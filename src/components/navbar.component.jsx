@@ -158,6 +158,7 @@ export default function NavigationBar() {
                 md:justify-center
                 md:border-b-4
                 md:border-b-golden-1
+                md:bg-white
                 "
             >
                 {params.children}

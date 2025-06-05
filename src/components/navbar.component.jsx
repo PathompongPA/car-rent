@@ -18,6 +18,7 @@ export default function NavigationBar() {
                 className="
                     h-16
                     w-32
+                    
                     bg-gray-200
                     object-cover
                     "
@@ -104,23 +105,6 @@ export default function NavigationBar() {
         )
     }
 
-    function Box(params) {
-        return (
-            <div
-                className="
-                        flex 
-                        flex-col
-                        md:border-b-4
-                        md:border-b-golden-1
-                        md:flex-row
-                        md:justify-between
-                        md:items-center
-                        "
-            >
-                {params.children}
-            </div>
-        )
-    }
     function Menu(params) {
         return (
             <div
@@ -141,13 +125,45 @@ export default function NavigationBar() {
 
     }
 
+    function Farm(params) {
+        return (
+            <div
+                className="
+                md:flex
+                md:items-center
+                md:w-7xl
+                "
+            >
+                {params.children}
+            </div>
+        )
+
+    }
+
+    function Box(params) {
+        return (
+            <div
+                className="
+                sticky
+                md:flex
+                md:justify-center
+                md:border-b-4
+                md:border-b-golden-1
+                "
+            >
+                {params.children}
+            </div>
+        )
+    }
     return (
         <Box>
-            <Menu>
-                <Logo img={mockUp.logo} />
-                <BtnHamburgerMenu />
-            </Menu>
-            <Title title={mockUp.title} />
+            <Farm>
+                <Menu>
+                    <Logo img={mockUp.logo} />
+                    <BtnHamburgerMenu />
+                </Menu>
+                <Title title={mockUp.title} />
+            </Farm>
         </Box>
     )
 };

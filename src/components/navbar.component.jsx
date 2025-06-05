@@ -81,6 +81,10 @@ export default function NavigationBar() {
                 p-4
                 flex
                 hidden
+                backdrop-blur-sm
+                bg-gray-300/70
+                md:backdrop-blur-none
+                md:bg-white
                 md:flex-row
                 md:flex
                 md:gap-8
@@ -144,7 +148,12 @@ export default function NavigationBar() {
         return (
             <div
                 className="
-                sticky
+                fixed
+                top-0
+                left-0
+                z-10
+                w-full
+                md:sticky
                 md:flex
                 md:justify-center
                 md:border-b-4

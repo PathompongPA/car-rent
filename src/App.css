@@ -2,9 +2,14 @@
 
 * {
   box-sizing: border-box;
-  color: var(--color-blue-1);
+  /* color: var(--color-blue-1); */
   font-family: ibm;
   font-weight: bolder;
+}
+
+.active {
+  background-color: var(--color-blue-2);
+  color: var(--color-white);
 }
 
 @font-face {
@@ -22,7 +27,7 @@ li {
 
 
 @theme {
-
+  --color-gray-1: #C2C2C2;
   --color-golden-1: #D4903B;
   --color-blue-1: #04185C;
   --color-blue-2: #16224B;

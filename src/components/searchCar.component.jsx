@@ -41,7 +41,7 @@ export default function SearchCar() {
                 md:pt-0
                 md:flex
                 md:justify-center
-                md:h-[650px]
+                md:h-[700px]
                 "
             >
                 {params.children}
@@ -64,6 +64,7 @@ export default function SearchCar() {
             </div>
         )
     }
+
     function BigImg(params) {
         let img = params.img
         return (

@@ -1,22 +1,11 @@
-import { NavigationBar, SearchCar } from "../components"
+import { NavigationBar, ResultCar, SearchCar } from "../components"
 
 export default function HomePage() {
-    function Box(params) {
-        return (
-            <div
-                className="
-                home-page
-                "
-            >
-                {params.children}
-            </div>
-        )
-
-    }
     return (
-        <Box>
+        <div className="home-page flex flex-col items-center justify-center">
             <NavigationBar />
             <SearchCar />
-        </Box>
+            <ResultCar />
+        </div>
     )
 };

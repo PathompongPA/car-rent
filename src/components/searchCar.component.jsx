@@ -38,6 +38,7 @@ export default function SearchCar() {
                 className="
                 pt-[70px]
                 relative
+                w-full
                 md:pt-0
                 md:flex
                 md:justify-center

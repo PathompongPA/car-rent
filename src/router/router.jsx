@@ -1,8 +1,7 @@
-import { createBrowserRouter } from "react-router";
-import { NavigationBar } from "../components";
+import { createHashRouter } from "react-router";
 import { HomePage } from "../pages";
 
-const router = createBrowserRouter([{
+const router = createHashRouter([{
     path: "/",
     element: <HomePage />
 }])

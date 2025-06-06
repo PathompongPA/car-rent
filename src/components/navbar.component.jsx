@@ -117,6 +117,7 @@ export default function NavigationBar() {
                 p-4
                 border-b-4
                 border-b-golden-1
+                bg-white
                 place-content-between
                 md:place-content-start
                 md:border-0

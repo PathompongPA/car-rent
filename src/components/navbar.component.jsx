@@ -1,180 +1,39 @@
-import logo from "../assets/logo.jpg"
+import { Link } from "react-router"
+import { mockup } from "../mockup";
+
 export default function NavigationBar() {
-    let mockUp = {
-        title: [
-            "จอง",
-            "โปรโมชั่น",
-            "รีวิว",
-            "ข่าวสาร",
-            "เกี่ยวกับเรา"
-        ],
-        logo: logo
-    }
+    const { component } = mockup;
 
-    function Logo(params) {
-        let img = params.img
-        return (
-            <img
-                className="
-                    h-16
-                    w-32
-                    
-                    bg-gray-200
-                    object-cover
-                    "
-                src={img}
-                alt="รถเช่าบ้านคุณบี88"
-            />
-        )
-    }
-
-    function BtnHamburgerMenu() {
+    function BtnHamburgerMenu({ className }) {
         function handleBtnHamburgerMenu() {
-            document.getElementsByClassName("navigation-title")[0].classList.toggle("hidden")
+            document.getElementsByClassName("navigation__menu")[0].classList.toggle("hidden")
         }
         return (
-            <div
-                className="
-                NavigationBar__btn-hamburger-menu
-                flex
-                flex-col
-                items-end
-                justify-center
-                gap-1
-                md:hidden
-                "
-                onClick={handleBtnHamburgerMenu}
-            >
-                <div
-                    className="
-                    h-1
-                    w-8
-                    bg-blue-2
-                    "
-                ></div>
-                <div
-                    className="
-                    h-1 
-                    w-8
-                    bg-blue-2
-                    "
-                ></div>
-                <div
-                    className="
-                    h-1 
-                    w-8
-                    bg-blue-2
-                    "
-                ></div>
-            </div>
+            <a onClick={handleBtnHamburgerMenu} className={className} >
+                <div className={`navigation__element-hamburger-menu >> bg-blue-2 w-[40px] h-[7px] rounded-lg`} ></div>
+                <div className={`navigation__element-hamburger-menu >> bg-blue-2 w-[40px] h-[7px] rounded-lg`} ></div>
+                <div className={`navigation__element-hamburger-menu >> bg-blue-2 w-[40px] h-[7px] rounded-lg`} ></div>
+            </a>
         )
     }
 
-    function Title(params) {
-        return (
-            <ul
-                className="
-                navigation-title
-                flex-col
-                gap-4
-                w-full
-                p-4
-                flex
-                hidden
-                backdrop-blur-sm
-                bg-gray-300/70
-                md:backdrop-blur-none
-                md:bg-white
-                md:flex-row
-                md:flex
-                md:gap-8
-                md:justify-end
-                "
-            >
-                {
-                    params.title.map((_params, index) => {
-                        return (
-                            <li
-                                className="
-                                text-right
-                                "
-                                key={_params + index}
-                            >
-                                {_params}
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        )
+    function Title({ TitleList, className }) {
+        return TitleList.map(({ text, link }, index) => {
+            return <Link className={className} key={text + index} href={link} > {text} </Link>
+        })
     }
 
-    function Menu(params) {
-        return (
-            <div
-                className="
-                flex  
-                p-4
-                border-b-4
-                border-b-golden-1
-                bg-white
-                place-content-between
-                md:place-content-start
-                md:border-0
-                "
-            >
-                {params.children}
-            </div>
-
-        )
-
-    }
-
-    function Farm(params) {
-        return (
-            <div
-                className="
-                md:flex
-                md:items-center
-                md:w-7xl
-                "
-            >
-                {params.children}
-            </div>
-        )
-
-    }
-
-    function Box(params) {
-        return (
-            <div
-                className="
-                fixed
-                top-0
-                left-0
-                z-10
-                w-full
-                md:sticky
-                md:flex
-                md:justify-center
-                md:border-b-4
-                md:border-b-golden-1
-                md:bg-white
-                "
-            >
-                {params.children}
-            </div>
-        )
-    }
     return (
-        <Box>
-            <Farm>
-                <Menu>
-                    <Logo img={mockUp.logo} />
-                    <BtnHamburgerMenu />
-                </Menu>
-                <Title title={mockUp.title} />
-            </Farm>
-        </Box>
+        <div className="navigation >> flex justify-center fixed | top-0 z-10 w-full | md:sticky | md:border-b-4 md:border-golden-1 md:bg-white md:drop-shadow-xl/25">
+            <div className="navigation__container >> flex flex-col grow bg-transparent | max-w-7xl  max-h-[80px] | md:items-center md:flex-row">
+                <div className="navigation__container-logo >> flex grow justify-between items-center | py-2 pr-2 | bg-white | border-b-4 border-golden-1 | md:border-b-0 ">
+                    <img className="navigation__logo >> aspect-16/9 object-cover | max-h-[60px]" src={component.navbar.logo} alt="logo" />
+                    <BtnHamburgerMenu className={"navigation__btn-hamburger-menu >> flex flex-col items-end | gap-[5px] | md:hidden"} />
+                </div>
+                <div className="navigation__menu >> hidden flex flex-col items-end | p-4 gap-6 grow | bg-blue-1/5 backdrop-blur-lg | md:flex md:flex-row md:justify-end | md:gap-8 | md:bg-transparent">
+                    <Title className={"navigation__title >> --btn >> w-fit | text-blue-1 font-extrabold "} TitleList={component.navbar.title.list} />
+                </div>
+            </div>
+        </div>
     )
 };

@@ -27,6 +27,7 @@ let allCar = {
     ],
     amount: 1
 }
+let brand = {}
 
 allCar.list.push(allCar.list[0])
 allCar.list.push(allCar.list[0])
@@ -39,8 +40,5 @@ allCar.list.push(allCar.list[0])
 allCar.list.push(allCar.list[0])
 allCar.list.push(allCar.list[0])
 allCar.amount = allCar.list.length
-let mockup = {
-    "allCar": allCar
-}
 
-export { mockup }
+export { allCar }

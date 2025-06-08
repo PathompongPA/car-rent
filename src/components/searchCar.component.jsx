@@ -1,184 +1,29 @@
-import bigImg from "../assets/bigImg.jpg"
-import bmw from "../assets/logo/bmw.png"
-import benz from "../assets/logo/benz.png"
-import mini from "../assets/logo/mini.png"
-import hyundai from "../assets/logo/hyundai.png"
 import { useState } from "react"
+import { mockup } from "../mockup";
 
 export default function SearchCar() {
     const [location, setLocation] = useState(4)
-
-    let mockUp = {
-        layout: {
-            bigImg: bigImg
-        },
-        brand: [
-            {
-                brandName: "bmw",
-                img: bmw
-            },
-            {
-                brandName: "benz",
-                img: benz
-            },
-            {
-                brandName: "mini",
-                img: mini
-            },
-            {
-                brandName: "hyundai",
-                img: hyundai
-            }
-        ]
-    }
-
-    function Box(params) {
-        return (
-            <div
-                className="
-                pt-[70px]
-                relative
-                w-full
-                md:pt-0
-                md:flex
-                md:justify-center
-                md:h-[700px]
-                "
-            >
-                {params.children}
-            </div>
-        )
-    }
-    function Farm(params) {
-        return (
-            <div
-                className="
-                flex
-                flex-col
-                md:justify-center
-                md:flex-row
-                w-full
-                md:w-7xl
-                "
-            >
-                {params.children}
-            </div>
-        )
-    }
-
-    function BigImg(params) {
-        let img = params.img
-        return (
-            <img
-                className="
-                md:h-[540px]
-                md:w-full
-                md:object-cover
-                "
-                src={img}
-                alt="big image"
-            />
-        )
-    }
-
-    function Filter(params) {
-        let amountBrand = params.brand.length
-        function handleBtnFilter(e) {
-            setLocation(e)
-        }
-
-        return (
-            <div
-                className="
-                search-car__filter
-
-                flex
-                justify-center
-                items-center
-                flex-wrap
-
-                gap-4
-                py-4
-                bottom-4
-
-                bg-gradient-to-t
-                from-5%
-                from-gray-1
-                to-55%%
-                to-white
-
-                drop-shadow-xl/50
-                hover:cursor-pointer
-
-                md:flex-nowrap
-                md:absolute
-                md:p-4
-                md:gap-16
-                md:rounded-lg
-                ">
-                {params.brand.map((params, index) => {
-                    const { brandName, img } = params;
-                    return (
-                        <div
-                            className={`
-                            gap-2.5
-                            px-4
-                            py-2.5
-                            w-[45%]
-                            drop-shadow-xl/10
-                            flex
-                            rounded-lg
-                            flex-col
-                            justify-center
-                            items-center
-                            ${location === index ? "active" : ""}
-                            `}
-                            key={index}
-                            onClick={() => { handleBtnFilter(index) }}
-                        >
-                            <img
-                                className="
-                                w-[100px]
-                                h-[100px]
-                                object-scale-down
-                                "
-                                src={img}
-                                alt=""
-                            />
-                            <p
-                                className="
-                                text-center
-                                "
-                            >{brandName}</p>
-                        </div>
-                    )
-                })}
-                <button
-                    className={`
-                    py-2.5
-                    px-4
-                    h-fit
-                    w-fit
-                    rounded-lg
-                    hover:cursor-pointer
-                    ${location === amountBrand ? "active" : ""}
-                    `}
-                    onClick={() => {
-                        handleBtnFilter(amountBrand)
-                    }}
-                >
-                    ALL
-                </button>
-            </div>
-        )
-    }
+    const { car, component } = mockup;
+    const { bigImg } = component.search;
+    const { brand } = car;
+    const handleBtnFilter = (e) => setLocation(e)
 
     return (
-        <Box>
-            <Farm>
-                <BigImg img={mockUp.layout.bigImg} />
-                <Filter brand={mockUp.brand} />
-            </Farm>
-        </Box>
+        <div className="search-car >> relative | pt-[40px] w-full | md:flex md:justify-center | md:pt-0 md:h-[850px]" >
+            <div className="search-car__container >> flex flex-col | w-full gap-4 | items-center justify-center md:flex-row md:w-7xl" >
+                <img className="search-car__big-image >> aspect-4/3 object-cover | md:h-[540px] md:w-full " src={bigImg} alt="big image" />
+                <div className="search-car__filter >> flex justify-center items-center flex-wrap | w-[95%] p-4 gap-4 | bg-gradient-to-t from-5% from-gray-1 to-55%% to-white drop-shadow-xl/50 | md:flex-nowrap md:absolute md:bottom-0 | md:w-fit md:px-8 md:py-4 md:gap-8 md:rounded-lg ">
+                    <div className="search-car__container-card >> flex justify-between flex-wrap | w-full gap-4 | md:gap-8">
+                        {brand.list.map(({ brandName, img }, index) => (
+                            <div className={`search-car__brand-card --btn ${location === index ? "active" : ""} ${location === brand.amount ? "active" : ""} >> flex flex-col justify-center items-center flex-wrap | p-2 | drop-shadow-xl/10 rounded-lg | md:px-4 md:py-2.5 md:gap-2.5 | active:bg-blue-1 `} key={index} onClick={() => { handleBtnFilter(index) }} >
+                                <img className="search-car__brand-image >> aspect-1/1 object-scale-down | max-w-[12vw] | md:object-scale-down md:aspect-1/1 | md:max-w-[100px] " src={img} alt="" />
+                                <p className="search-car__brand-name >> hidden | text-center font-bold | md:block" >{brandName}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <button className={`search-car__btn-all --btn ${location === brand.amount ? "active" : ""} >> py-1 w-full | font-bold | rounded-lg | md:w-fit md:py-2.5 md:px-4`} onClick={() => { handleBtnFilter(brand.amount) }} > ALL </button>
+                </div>
+            </div>
+        </div>
     )
 };

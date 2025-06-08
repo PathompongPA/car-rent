@@ -25,7 +25,7 @@
 
 @layer utilities {
   .--btn {
-    @apply hover:cursor-pointer hover:scale-[1.05] active:scale-[1] transition-all duration-75 select-none
+    @apply hover:cursor-pointer hover:scale-[1.05] active:scale-[.95] transition-all duration-75 select-none
   }
 
   .active {

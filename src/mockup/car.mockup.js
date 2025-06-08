@@ -6,39 +6,103 @@ import img5 from '../assets/car/bmw/z4/img5.jpg'
 import img6 from '../assets/car/bmw/z4/img6.jpg'
 import img7 from '../assets/car/bmw/z4/img7.jpg'
 import thumbnail from '../assets/car/bmw/z4/thumbnail.png'
-let allCar = {
-    list: [
+import a2001 from '../assets/car/benz/a200/a2001.webp'
+import a2002 from '../assets/car/benz/a200/a2002.webp'
+import a2003 from '../assets/car/benz/a200/a2003.webp'
+import a2004 from '../assets/car/benz/a200/a2004.webp'
+import a2005 from '../assets/car/benz/a200/a2005.webp'
+import a2006 from '../assets/car/benz/a200/a2006.webp'
+import a2007 from '../assets/car/benz/a200/a2007.webp'
+import a2008 from '../assets/car/benz/a200/a2008.webp'
+import a200thumbnail from '../assets/car/benz/a200/a200thumbnail.webp'
+import bmw from '../assets/logo/bmw.png'
+import benz from '../assets/logo/benz.png'
+import mini from '../assets/logo/mini.png'
+import hyundai from '../assets/logo/hyundai.png'
+
+let benzA200 = {
+    carId: "2",
+    carName: "A200",
+    brandName: "Benz",
+    description: "this is demo description.",
+    thumbnail: a200thumbnail,
+    offer: [
         {
-            carId: "1",
-            carName: "z4",
-            brandName: "Bmw",
-            description: "this is demo description.",
-            thumbnail: thumbnail,
-            offer: [
-                {
-                    day: 1,
-                    price: 4000,
-                }
-            ],
-            image: [
-                img1, img2, img3, img4, img5, img6, img7
-            ]
+            day: 1,
+            price: 4200,
         },
+        {
+            day: 7,
+            price: 3900
+        }
     ],
-    amount: 1
+    image: [a2001, a2002, a2003, a2004, a2005, a2006, a2007, a2008,]
 }
-let brand = {}
 
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.list.push(allCar.list[0])
-allCar.amount = allCar.list.length
+let bmwZ4 = {
+    carId: "1",
+    carName: "z4",
+    brandName: "Bmw",
+    description: "this is demo description.",
+    thumbnail: thumbnail,
+    offer: [
+        {
+            day: 1,
+            price: 4000,
+        },
+        {
+            day: 7,
+            price: 3700
+        }
+    ],
+    image: [
+        img1, img2, img3, img4, img5, img6, img7
+    ]
+}
 
-export { allCar }
+let car = {
+    brand: {
+        list: [
+            {
+                brandName: "bmw",
+                img: bmw
+            },
+            {
+                brandName: "benz",
+                img: benz
+            },
+            {
+                brandName: "mini",
+                img: mini
+            },
+            {
+                brandName: "hyundai",
+                img: hyundai
+            }
+        ],
+        amount: 0
+    },
+    all: {
+        list: [],
+        amount: 0
+    },
+}
+
+car.all.list.push(benzA200)
+car.all.list.push(benzA200)
+car.all.list.push(benzA200)
+car.all.list.push(benzA200)
+car.all.list.push(bmwZ4)
+car.all.list.push(bmwZ4)
+car.all.list.push(bmwZ4)
+car.all.list.push(bmwZ4)
+car.all.amount = car.all.list.length
+
+// car.all.list.map(({ brandName }) => {
+//     let isBrand = car.brand.list.find((_params) => _params === brandName)
+//     !isBrand ? car.brand.list.push(brandName) : ""
+// })
+
+car.brand.amount = car.brand.list.length
+
+export { car }

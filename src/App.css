@@ -25,11 +25,15 @@
 
 @layer utilities {
   .--btn {
-    @apply hover:cursor-pointer hover:scale-[1.05] active:scale-[.95] transition-all duration-75 select-none
+    @apply hover:cursor-pointer hover:md:scale-[1.1] active:scale-[.9] active:md:scale-[.99] transition-all duration-75 select-none
   }
 
   .active {
     @apply bg-blue-2 text-white
+  }
+
+  .show {
+    @apply hidden bg-white
   }
 
 }

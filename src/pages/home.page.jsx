@@ -1,4 +1,4 @@
-import { NavigationBar, ResultCar, SearchCar } from "../components"
+import { JourneyBooking, NavigationBar, ResultCar, SearchCar } from "../components"
 
 export default function HomePage() {
     return (
@@ -6,6 +6,7 @@ export default function HomePage() {
             <NavigationBar />
             <SearchCar />
             <ResultCar />
+            <JourneyBooking />
         </div>
     )
 };

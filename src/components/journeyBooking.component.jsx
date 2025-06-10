@@ -17,19 +17,7 @@ export default function JourneyBooking() {
                 {journeyBooking.card.list.map(({ title, detail }, index) =>
                     <div className={`journey-booking__card --btn >> flex flex-col justify-center items-center | w-full min-h-[180px] | bg-blue-2 | drop-shadow-xl/50 rounded-lg | text-white text-xl font-extrabold | md:w-[400px] text-center md:min-h-[400] md:h-full`} onClick={handleHoverCard} key={`journey-booking-card-${index}`} index={index}>
                         <h1 className="journey-booking__card-title >> flex justify-center items-center | p-8 | md:w-full md:h-[150px] | md:text-4xl" index={index}> {title} </h1>
-                        <div
-                            className={`
-                                jouryney-booking__container-detail >> 
-                                flex flex-col justify-center| 
-                                w-full p-4 gap-4 |
-                                bg-white |
-                                rounded-lg |
-                                md:items-start md:justify-start |
-                                md:min-h-[300px] md:max-w-full |
-                                ${locatoion === index ? "" : "md:hidden"}
-                                `}
-                            index={index}>
-
+                        <div className={` jouryney-booking__container-detail >> flex flex-col justify-center| w-full p-4 gap-4 | bg-white | rounded-lg | md:items-start md:justify-start | md:min-h-[300px] md:max-w-full | ${locatoion === index ? "" : "md:hidden"} `} index={index}>
                             {detail.map((param, _index) =>
                                 <div className={`journey-booking__card-detail >> flex justify-start items-start | h-fit | text-base font-bold text-blue-1`} key={`journey-booking-card-detail-${_index}`} index={_index}>{`- ${param}`}</div>
                             )}

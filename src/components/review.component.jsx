@@ -13,7 +13,7 @@ export default function Review() {
             <h3 className="review__description >> text-center font-bold text-blue-1">{`${description} ${amount} รีวิว`}</h3>
             <div className={`review__container-card >> flex flex-wrap justify-center relative overflow-hidden | w-full gap-4 p-4 | md:gap-8 ${showMore ? "h-full" : "h-[70vh] md:h-[50vh]"}`}>
                 {list.map(({ img, reviewName, date, message }, index) =>
-                    <div className="review__card --btn >> flex flex-col gap-4 w-full p-4 pb-8 | border-1 border-golden-1 rounded-lg | md:p-8 md:pt-4 md:max-w-[350px]" key={`review-card-${index}`}>
+                    <div className="review__card --btn >> flex flex-col gap-4 w-full p-4 pb-8 | border-1 border-golden-1 rounded-lg | md:p-8 md:pt-4 md:max-w-[330px]" key={`review-card-${index}`}>
                         <div className="review__container-header-card >> flex items-center | w-full gap-4 ">
                             <img className="review_card-img >> aspect-1/1 | w-[60px] bg-gray-1 rounded-full" src={img} alt={`${reviewName} image`} />
                             <div className="review__container-title-card">

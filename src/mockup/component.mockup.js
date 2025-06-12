@@ -12,7 +12,7 @@ let component = {
                 [
                     {
                         text: "จอง",
-                        link: ""
+                        link: "#contact"
                     },
                     {
                         text: "โปรโมชั่น",
@@ -81,10 +81,47 @@ let component = {
         description: "จากผู้ใช้มากกว่า",
         list: [],
         amount: 0
+    },
+    "contact": {
+        title: "ติดต่อเรา",
+        list: [
+            {
+                name: "โทรศัพท์",
+                list: [
+                    {
+                        message: "092-847-0991",
+                        link: "+6692-847-0991"
+                    },
+                    {
+                        message: "098-926-9669",
+                        link: "+6698-926-9669"
+                    }
+                ]
+            },
+            {
+                name: "facebook",
+                list: [
+                    {
+                        message: "รถเช่า บ้านคุณบี88",
+                        link: "https://www.facebook.com/profile.php?id=61563865480190"
+                    }
+                ]
+            },
+            {
+                name: "line",
+                list: [
+                    {
+                        message: "@CARRENT88",
+                        link: "https://line.me/R/ti/p/@271xryvl?oat_content=url&ts=08110024"
+                    }
+                ]
+            },
+        ],
+        amount: 0
     }
 }
-let review1 =
-{
+
+let review1 = {
     img: user1,
     reviewName: "Panada chanupanarak",
     date: dayjs("05-12-24"),
@@ -129,6 +166,7 @@ component.review.list.push(review1)
 component.review.list.push(review3)
 component.review.list.push(review3)
 component.review.amount = component.review.list.length
+component.contact.amount = component.contact.list.length
 
 export {
     component

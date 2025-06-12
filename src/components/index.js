@@ -1,3 +1,4 @@
+import Contact from "./contact.component";
 import JourneyBooking from "./journeyBooking.component";
 import NavigationBar from "./navbar.component";
 import ResultCar from "./resultCar.component";
@@ -9,5 +10,6 @@ export {
     SearchCar,
     ResultCar,
     JourneyBooking,
-    Review
+    Review,
+    Contact
 }

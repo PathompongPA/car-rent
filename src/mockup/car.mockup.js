@@ -19,6 +19,7 @@ import bmw from '../assets/logo/bmw.png'
 import benz from '../assets/logo/benz.png'
 import mini from '../assets/logo/mini.png'
 import hyundai from '../assets/logo/hyundai.png'
+import dayjs from 'dayjs'
 
 let benzA200 = {
     carId: "2",
@@ -28,16 +29,36 @@ let benzA200 = {
     thumbnail: a200thumbnail,
     offer: [
         {
-            day: 1,
+            title: "1",
             price: 4200,
         },
         {
-            day: 7,
+            title: "2-6",
             price: 3900
-        }
+        },
+        {
+            title: "7-14",
+            price: 3900
+        },
+        {
+            title: "15+",
+            price: 3900
+        },
+        {
+            title: "30",
+            price: 3900
+        },
     ],
+    booking: [],
     image: [a2001, a2002, a2003, a2004, a2005, a2006, a2007, a2008,]
 }
+benzA200.booking.push(dayjs().add(-7, "day"))
+benzA200.booking.push(dayjs().add(-8, "day"))
+benzA200.booking.push(dayjs().add(-9, "day"))
+benzA200.booking.push(dayjs().add(-10, "day"))
+benzA200.booking.push(dayjs().add(-11, "day"))
+benzA200.booking.push(dayjs().add(-12, "day"))
+
 
 let bmwZ4 = {
     carId: "1",
@@ -47,18 +68,40 @@ let bmwZ4 = {
     thumbnail: thumbnail,
     offer: [
         {
-            day: 1,
-            price: 4000,
+            title: "1",
+            price: 4200,
         },
         {
-            day: 7,
-            price: 3700
-        }
+            title: "2-6",
+            price: 3900
+        },
+        {
+            title: "7-14",
+            price: 3900
+        },
+        {
+            title: "15+",
+            price: 3900
+        },
+        {
+            title: "30",
+            price: 3900
+        },
     ],
+    booking: [],
     image: [
         img1, img2, img3, img4, img5, img6, img7
     ]
 }
+bmwZ4.booking.push(dayjs().add(-2, "day"))
+bmwZ4.booking.push(dayjs().add(-3, "day"))
+bmwZ4.booking.push(dayjs().add(-4, "day"))
+bmwZ4.booking.push(dayjs().add(-5, "day"))
+bmwZ4.booking.push(dayjs().add(-6, "day"))
+bmwZ4.booking.push(dayjs().add(-7, "day"))
+bmwZ4.booking.push(dayjs().add(-8, "day"))
+bmwZ4.booking.push(dayjs().add(-9, "day"))
+bmwZ4.booking.push(dayjs().add(-10, "day"))
 
 let car = {
     brand: {

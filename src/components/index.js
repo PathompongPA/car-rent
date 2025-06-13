@@ -1,5 +1,6 @@
 import Contact from "./contact.component";
 import Footer from "./footer.component";
+import GalleryCar from "./gallery.component";
 import JourneyBooking from "./journeyBooking.component";
 import NavigationBar from "./navbar.component";
 import QAndAComponent from "./Q&A.component";
@@ -15,5 +16,6 @@ export {
     Review,
     Contact,
     QAndAComponent,
-    Footer
+    Footer,
+    GalleryCar
 }

@@ -1,4 +1,4 @@
-import { Contact, JourneyBooking, NavigationBar, QAndAComponent, ResultCar, Review, SearchCar } from "../components"
+import { Contact, Footer, JourneyBooking, NavigationBar, QAndAComponent, ResultCar, Review, SearchCar } from "../components"
 
 export default function HomePage() {
     return (
@@ -10,6 +10,7 @@ export default function HomePage() {
             <Review />
             <Contact />
             <QAndAComponent />
+            <Footer />
         </div>
     )
 };

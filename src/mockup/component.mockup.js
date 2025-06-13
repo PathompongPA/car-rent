@@ -121,6 +121,18 @@ let component = {
     },
     "QA": {
         list: [], amount: 0
+    },
+    "footer": {
+        img: logo,
+        "p1": {
+            title: "Contact",
+            description: " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis debitis laudantium esse labore natus fugiat nam quibusdam, fuga qui nostrum amet,"
+        },
+        "p2": {
+            title: "Follows me",
+            list: [],
+            amount: 0
+        }
     }
 }
 
@@ -187,6 +199,16 @@ component.QA.list.push(qa1)
 component.QA.list.push(qa1)
 component.QA.list.push(qa1)
 component.QA.amount = component.QA.list.length
+
+let follow1 = {
+    icon: "",
+    link: ""
+}
+component.footer.p2.list.push(follow1)
+component.footer.p2.list.push(follow1)
+component.footer.p2.list.push(follow1)
+component.footer.p2.list.push(follow1)
+component.footer.p2.amount = component.footer.p2.list.length
 
 export {
     component

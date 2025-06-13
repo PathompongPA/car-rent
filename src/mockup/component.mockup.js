@@ -90,11 +90,11 @@ let component = {
                 list: [
                     {
                         message: "092-847-0991",
-                        link: "+6692-847-0991"
+                        link: "092-847-0991",
                     },
                     {
                         message: "098-926-9669",
-                        link: "+6698-926-9669"
+                        link: "098-926-9669",
                     }
                 ]
             },
@@ -118,6 +118,9 @@ let component = {
             },
         ],
         amount: 0
+    },
+    "QA": {
+        list: [], amount: 0
     }
 }
 
@@ -167,6 +170,23 @@ component.review.list.push(review3)
 component.review.list.push(review3)
 component.review.amount = component.review.list.length
 component.contact.amount = component.contact.list.length
+
+let qa1 = {
+    q: "ทำอย่างไรเมื่อเกิดอุบัติเหตุุเมื่อเช่ารถไปแล้ว",
+    a: "ทำใจแล้วติดต่อกลับมาหาเราครับ"
+}
+
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.list.push(qa1)
+component.QA.amount = component.QA.list.length
 
 export {
     component

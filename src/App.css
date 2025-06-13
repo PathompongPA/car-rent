@@ -9,6 +9,12 @@
 
 @theme {
   --font-ibm: ibm;
+  --text-title-1: 64px;
+  --text-title-2: 48px;
+  --text-title-3: 32px;
+  --text-description-1: 24px;
+  --text-description-2: 22px;
+  --text-description-3: 20px;
   --color-gray-1: #C2C2C2;
   --color-golden-1: #D4903B;
   --color-blue-1: #04185C;
@@ -21,11 +27,17 @@
   * {
     @apply box-border font-ibm
   }
+
+  details:hover {
+    @apply cursor-pointer
+  }
+
+
 }
 
 @layer utilities {
   .--btn {
-    @apply hover:cursor-pointer hover:md:scale-[1.1] active:scale-[.9] active:md:scale-[.99] transition-all duration-75 select-none
+    @apply hover:cursor-pointer hover:md:scale-[1.1] active:scale-[.9] active:md:scale-[.99] transition-all duration-150 select-none
   }
 
   .active {

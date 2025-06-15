@@ -1,3 +1,4 @@
+import Calendar from "./calendar.component";
 import Contact from "./contact.component";
 import Footer from "./footer.component";
 import GalleryCar from "./gallery.component";
@@ -17,5 +18,6 @@ export {
     Contact,
     QAndAComponent,
     Footer,
-    GalleryCar
+    GalleryCar,
+    Calendar
 }

@@ -58,6 +58,15 @@ benzA200.booking.push(dayjs().add(-9, "day"))
 benzA200.booking.push(dayjs().add(-10, "day"))
 benzA200.booking.push(dayjs().add(-11, "day"))
 benzA200.booking.push(dayjs().add(-12, "day"))
+benzA200.booking.push(dayjs().add(2, "day"))
+benzA200.booking.push(dayjs().add(4, "day"))
+benzA200.booking.push(dayjs().add(7, "day"))
+benzA200.booking.push(dayjs().add(9, "day"))
+benzA200.booking.push(dayjs().add(10, "day"))
+benzA200.booking.push(dayjs().add(11, "day"))
+benzA200.booking.push(dayjs().add(12, "day"))
+benzA200.booking.push(dayjs().add(18, "day"))
+benzA200.booking.push(dayjs().add(17, "day"))
 
 
 let bmwZ4 = {
@@ -102,6 +111,11 @@ bmwZ4.booking.push(dayjs().add(-7, "day"))
 bmwZ4.booking.push(dayjs().add(-8, "day"))
 bmwZ4.booking.push(dayjs().add(-9, "day"))
 bmwZ4.booking.push(dayjs().add(-10, "day"))
+bmwZ4.booking.push(dayjs().add(10, "day"))
+bmwZ4.booking.push(dayjs().add(11, "day"))
+bmwZ4.booking.push(dayjs().add(16, "day"))
+bmwZ4.booking.push(dayjs().add(14, "day"))
+bmwZ4.booking.push(dayjs().add(9, "day"))
 
 let car = {
     brand: {

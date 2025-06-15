@@ -1,5 +1,5 @@
 import { Outlet } from "react-router"
-import { Calendar, Contact, Footer, GalleryCar, JourneyBooking, NavigationBar, QAndAComponent, ResultCar, Review, SearchCar } from "../components"
+import { Calendar, Contact, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, QAndAComponent, ResultCar, Review, SearchCar } from "../components"
 
 export default function HomePage() {
     return (
@@ -8,6 +8,7 @@ export default function HomePage() {
             <SearchCar />
             <GalleryCar />
             <Calendar />
+            <Promotion />
             <Outlet />
             <JourneyBooking />
             <Review />

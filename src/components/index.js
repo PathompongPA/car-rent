@@ -4,6 +4,7 @@ import Footer from "./footer.component";
 import GalleryCar from "./gallery.component";
 import JourneyBooking from "./journeyBooking.component";
 import NavigationBar from "./navbar.component";
+import Promotion from "./promotion.component";
 import QAndAComponent from "./Q&A.component";
 import ResultCar from "./resultCar.component";
 import Review from "./review.component";
@@ -19,5 +20,6 @@ export {
     QAndAComponent,
     Footer,
     GalleryCar,
-    Calendar
+    Calendar,
+    Promotion
 }

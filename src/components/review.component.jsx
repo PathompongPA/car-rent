@@ -8,7 +8,7 @@ export default function Review() {
         setShowMore(!showMore)
     }
     return (
-        <div id="review" className="review >> flex flex-col | w-full gap-8  px-4 py-8 pt-8 | md:max-w-7xl md:gap-8 lgsnap-center">
+        <div id="review" className="review >> flex flex-col | w-full gap-8  px-4 py-8 pt-8 | md:max-w-7xl md:gap-8 lg:snap-center">
             <h1 className="review__title >> text-center font-bold text-6xl text-blue-1">{title}</h1>
             <h3 className="review__description >> text-center font-bold text-blue-1">{`${description} ${amount} รีวิว`}</h3>
             <div className={`review__container-card >> flex flex-wrap justify-center relative overflow-hidden | w-full gap-4 p-4 | md:gap-8 ${showMore ? "h-full" : "h-[70vh] md:h-[50vh]"}`}>

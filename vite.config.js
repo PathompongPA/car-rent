@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // base: "/car-rent"
+  base: "/car-rent"
 })

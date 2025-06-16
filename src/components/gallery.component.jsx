@@ -11,7 +11,7 @@ export default function GalleryCar() {
     const [indexBigImg, setIndexBigImg] = useState(0)
 
     useEffect(() => {
-        document.title = `${brandName}  ${carName} | ${document.title}`
+        document.title = `${document.title} - ${brandName} ${carName} `
     }, [brandName, carName])
 
     function handleClickBtnScrollImage(e) {

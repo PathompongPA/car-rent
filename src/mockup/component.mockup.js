@@ -12,23 +12,23 @@ let component = {
                 [
                     {
                         text: "จอง",
-                        link: "#contact"
+                        link: "booking"
                     },
                     {
-                        text: "โปรโมชั่น",
-                        link: ""
+                        text: "ขั้นตอนการจอง",
+                        link: "booking-step"
                     },
                     {
                         text: "รีวิว",
-                        link: ""
-                    },
-                    {
-                        text: "ข่าวสาร",
-                        link: ""
+                        link: "review"
                     },
                     {
                         text: "เกี่ยวกับเรา",
-                        link: ""
+                        link: "about"
+                    },
+                    {
+                        text: "คำถามที่พบบ่อย",
+                        link: "q&a"
                     },
                 ],
             amount: 0
@@ -194,10 +194,7 @@ component.QA.list.push(qa1)
 component.QA.list.push(qa1)
 component.QA.list.push(qa1)
 component.QA.list.push(qa1)
-component.QA.list.push(qa1)
-component.QA.list.push(qa1)
-component.QA.list.push(qa1)
-component.QA.list.push(qa1)
+
 component.QA.amount = component.QA.list.length
 
 let follow1 = {

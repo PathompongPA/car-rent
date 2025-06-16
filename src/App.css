@@ -25,7 +25,7 @@
 
 @layer base {
   * {
-    @apply box-border font-ibm
+    @apply box-border font-ibm scroll-smooth snap-y
   }
 
   details:hover {

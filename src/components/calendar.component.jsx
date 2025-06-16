@@ -1,18 +1,20 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react"
 import { mockup } from "../mockup";
+import { useSearchParams } from "react-router";
 
 export default function Calendar() {
     const [arrayDay, setArrayDay] = useState(genArrayDay(dayjs()))
     const [calendarNow, setCalendarNow] = useState(dayjs())
     const [toDay, setToDay] = useState(dayjs().format("YYYY-MM-DD"))
     const [booking, setBooking] = useState([])
+    const [searchParame] = useSearchParams()
 
     useEffect(() => {
         setToDay(dayjs().format("YYYY-MM-DD"))
         setArrayDay(genArrayDay(calendarNow))
         setBooking(mockup.car.all.list[0].booking)
-    }, [calendarNow])
+    }, [calendarNow, searchParame])
 
     let listMonth = ["มกราคม", "กุมภาพันธ์", "มิถุนายน", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
     let listDayInWeek = ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"]
@@ -45,7 +47,7 @@ export default function Calendar() {
     let year = calendarNow.format("YYYY")
 
     return (
-        <div className="calendar *** flex flex-col | gap-4 w-full p-4 min-h-[50vh] | font-black text-blue-1 | lg:max-w-7xl lg:pt-8 " >
+        <div className="calendar *** flex flex-col | gap-4 w-full p-4 min-h-[50vh] | font-black text-blue-1 | lg:max-w-7xl lg:py-8 lg:snap-center" >
 
             <div className="calendar__title-component *** flex flex-row justify-between items-center">
                 <h1 className="calendar__calendar-booking *** text-title-3 lg:text-title-1"> ปฎิทินการจอง </h1>

@@ -1,6 +1,5 @@
 import { Outlet } from "react-router"
 import { Footer, NavigationBar, QAndAComponent, SearchCar } from "../components"
-import { useEffect } from "react"
 
 export default function HomePage() {
     return (

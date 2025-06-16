@@ -4,10 +4,6 @@ import { Calendar, Contact, DescriptionCar, GalleryCar, JourneyBooking, Promotio
 
 const router = createHashRouter([
     {
-        path: "*",
-        element: <GalleryCar />
-    },
-    {
         path: "/",
         title: "test",
         element: <HomePage />,
@@ -36,6 +32,11 @@ const router = createHashRouter([
                     ]
             }
         ]
-    }])
+    },
+    {
+        path: "*",
+        element: <GalleryCar />
+    },
+])
 
 export { router }

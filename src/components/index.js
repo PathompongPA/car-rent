@@ -1,5 +1,6 @@
 import Calendar from "./calendar.component";
 import Contact from "./contact.component";
+import DescriptionCar from "./descriptionCar.component";
 import Footer from "./footer.component";
 import GalleryCar from "./gallery.component";
 import JourneyBooking from "./journeyBooking.component";
@@ -21,5 +22,6 @@ export {
     Footer,
     GalleryCar,
     Calendar,
-    Promotion
+    Promotion,
+    DescriptionCar
 }

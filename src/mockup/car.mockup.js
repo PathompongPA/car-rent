@@ -21,119 +21,26 @@ import mini from '../assets/logo/mini.png'
 import hyundai from '../assets/logo/hyundai.png'
 import dayjs from 'dayjs'
 
-let benzA200 = {
-    carId: "2",
-    carName: "A200",
-    brandName: "Benz",
-    description: "this is demo description.",
-    thumbnail: a200thumbnail,
-    offer: [
-        {
-            title: "1",
-            price: 4200,
-        },
-        {
-            title: "2-6",
-            price: 3900
-        },
-        {
-            title: "7-14",
-            price: 3900
-        },
-        {
-            title: "15+",
-            price: 3900
-        },
-        {
-            title: "30",
-            price: 3900
-        },
-    ],
-    booking: [],
-    image: [a2001, a2002, a2003, a2004, a2005, a2006, a2007, a2008,]
-}
-benzA200.booking.push(dayjs().add(-7, "day"))
-benzA200.booking.push(dayjs().add(-8, "day"))
-benzA200.booking.push(dayjs().add(-9, "day"))
-benzA200.booking.push(dayjs().add(-10, "day"))
-benzA200.booking.push(dayjs().add(-11, "day"))
-benzA200.booking.push(dayjs().add(-12, "day"))
-benzA200.booking.push(dayjs().add(2, "day"))
-benzA200.booking.push(dayjs().add(4, "day"))
-benzA200.booking.push(dayjs().add(7, "day"))
-benzA200.booking.push(dayjs().add(9, "day"))
-benzA200.booking.push(dayjs().add(10, "day"))
-benzA200.booking.push(dayjs().add(11, "day"))
-benzA200.booking.push(dayjs().add(12, "day"))
-benzA200.booking.push(dayjs().add(18, "day"))
-benzA200.booking.push(dayjs().add(17, "day"))
 
 
-let bmwZ4 = {
-    carId: "1",
-    carName: "z4",
-    brandName: "Bmw",
-    description: "this is demo description.",
-    thumbnail: thumbnail,
-    offer: [
-        {
-            title: "1",
-            price: 4200,
-        },
-        {
-            title: "2-6",
-            price: 3900
-        },
-        {
-            title: "7-14",
-            price: 3900
-        },
-        {
-            title: "15+",
-            price: 3900
-        },
-        {
-            title: "30",
-            price: 3900
-        },
-    ],
-    booking: [],
-    image: [
-        img1, img2, img3, img4, img5, img6, img7
-    ]
-}
-bmwZ4.booking.push(dayjs().add(-2, "day"))
-bmwZ4.booking.push(dayjs().add(-3, "day"))
-bmwZ4.booking.push(dayjs().add(-4, "day"))
-bmwZ4.booking.push(dayjs().add(-5, "day"))
-bmwZ4.booking.push(dayjs().add(-6, "day"))
-bmwZ4.booking.push(dayjs().add(-7, "day"))
-bmwZ4.booking.push(dayjs().add(-8, "day"))
-bmwZ4.booking.push(dayjs().add(-9, "day"))
-bmwZ4.booking.push(dayjs().add(-10, "day"))
-bmwZ4.booking.push(dayjs().add(10, "day"))
-bmwZ4.booking.push(dayjs().add(11, "day"))
-bmwZ4.booking.push(dayjs().add(16, "day"))
-bmwZ4.booking.push(dayjs().add(14, "day"))
-bmwZ4.booking.push(dayjs().add(9, "day"))
 
 let car = {
     brand: {
         list: [
             {
-                brandName: "bmw",
+                brandName: "Bmw",
                 img: bmw
             },
             {
-                brandName: "benz",
+                brandName: "Benz",
                 img: benz
             },
             {
-                brandName: "mini",
+                brandName: "Mini",
                 img: mini
             },
             {
-                brandName: "hyundai",
+                brandName: "Hyundai",
                 img: hyundai
             }
         ],
@@ -145,21 +52,112 @@ let car = {
     },
 }
 
-car.all.list.push(benzA200)
-car.all.list.push(benzA200)
-car.all.list.push(benzA200)
-car.all.list.push(benzA200)
-car.all.list.push(bmwZ4)
-car.all.list.push(bmwZ4)
-car.all.list.push(bmwZ4)
-car.all.list.push(bmwZ4)
+for (let index = 0; index < 5; index++) {
+    let benzA200 = {
+        carId: index,
+        carName: "A200-demo-" + index,
+        brandName: car.brand.list[1].brandName,
+        description: "this is demo description.",
+        thumbnail: a200thumbnail,
+        offer: [
+            {
+                title: "1",
+                price: 4200,
+            },
+            {
+                title: "2-6",
+                price: 3900
+            },
+            {
+                title: "7-14",
+                price: 3600
+            },
+            {
+                title: "15+",
+                price: 3500
+            },
+            {
+                title: "30",
+                price: 3000
+            },
+        ],
+        booking: [],
+        image: [a2001, a2002, a2003, a2004, a2005, a2006, a2007, a2008,]
+    }
+    benzA200.booking.push(dayjs().add(-7, "day"))
+    benzA200.booking.push(dayjs().add(-8, "day"))
+    benzA200.booking.push(dayjs().add(-9, "day"))
+    benzA200.booking.push(dayjs().add(-10, "day"))
+    benzA200.booking.push(dayjs().add(-11, "day"))
+    benzA200.booking.push(dayjs().add(-12, "day"))
+    benzA200.booking.push(dayjs().add(2, "day"))
+    benzA200.booking.push(dayjs().add(4, "day"))
+    benzA200.booking.push(dayjs().add(7, "day"))
+    benzA200.booking.push(dayjs().add(9, "day"))
+    benzA200.booking.push(dayjs().add(10, "day"))
+    benzA200.booking.push(dayjs().add(11, "day"))
+    benzA200.booking.push(dayjs().add(12, "day"))
+    benzA200.booking.push(dayjs().add(18, "day"))
+    benzA200.booking.push(dayjs().add(17, "day"))
+    car.all.list.push(benzA200)
+}
+
+for (let index = 5; index < 10; index++) {
+    let bmwZ4 = {
+        carId: index,
+        carName: "z4-demo-" + index,
+        brandName: "Bmw",
+        description: "this is demo description.",
+        thumbnail: thumbnail,
+        offer: [
+            {
+                title: "1",
+                price: 4000,
+            },
+            {
+                title: "2-6",
+                price: 3700
+            },
+            {
+                title: "7-14",
+                price: 3500
+            },
+            {
+                title: "15+",
+                price: 3000
+            },
+            {
+                title: "30",
+                price: 2800
+            },
+        ],
+        booking: [],
+        image: [
+            img1, img2, img3, img4, img5, img6, img7
+        ]
+    }
+    bmwZ4.booking.push(dayjs().add(-2, "day"))
+    bmwZ4.booking.push(dayjs().add(-3, "day"))
+    bmwZ4.booking.push(dayjs().add(-4, "day"))
+    bmwZ4.booking.push(dayjs().add(-5, "day"))
+    bmwZ4.booking.push(dayjs().add(-6, "day"))
+    bmwZ4.booking.push(dayjs().add(-7, "day"))
+    bmwZ4.booking.push(dayjs().add(-8, "day"))
+    bmwZ4.booking.push(dayjs().add(-9, "day"))
+    bmwZ4.booking.push(dayjs().add(-10, "day"))
+    bmwZ4.booking.push(dayjs().add(10, "day"))
+    bmwZ4.booking.push(dayjs().add(11, "day"))
+    bmwZ4.booking.push(dayjs().add(16, "day"))
+    bmwZ4.booking.push(dayjs().add(14, "day"))
+    bmwZ4.booking.push(dayjs().add(9, "day"))
+    car.all.list.push(bmwZ4)
+}
+
 car.all.amount = car.all.list.length
-
-// car.all.list.map(({ brandName }) => {
-//     let isBrand = car.brand.list.find((_params) => _params === brandName)
-//     !isBrand ? car.brand.list.push(brandName) : ""
-// })
-
 car.brand.amount = car.brand.list.length
+
+car.all.list.sort((a, b) => {
+    a.carId - b.carId
+})
 
 export { car }

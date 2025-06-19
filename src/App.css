@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: ibm;
-  src: url(./assets/font/IBM_Plex_Sans_Thai/IBMPlexSansThai-Regular.ttf);
+  src: url(./assets/font/IBM_Plex_Sans_Thai/IBMPlexSansThai-Medium.ttf);
 }
 
 
@@ -20,12 +20,14 @@
   --color-blue-1: #04185C;
   --color-blue-2: #16224B;
   --color-blue-3: #050326;
+  --color-blue-3: #050326;
   --color: var(--color-blue-1);
 }
 
 @layer base {
   * {
-    @apply box-border font-ibm scroll-smooth lg:snap-y
+    @apply box-border font-ibm scroll-smooth
+    /* lg:snap-y lg:snap-mandatory */
   }
 
   details:hover {
@@ -41,11 +43,17 @@
   }
 
   .active {
-    @apply bg-blue-2 text-white
+    @apply bg-radial to-black/10 from-0%
+    /* bg-gradient-to-tr from-blue-2 to-blue-1/80 */
+    /* bg-gradient-to-tr from-blue-2 to-blue-1/80 text-white */
   }
 
   .show {
     @apply hidden bg-white
+  }
+
+  .--scroll-hide {
+    scrollbar-width: none;
   }
 
 }

@@ -42,6 +42,10 @@ let car = {
             {
                 brandName: "Hyundai",
                 img: hyundai
+            },
+            {
+                brandName: "Toyota",
+                img: hyundai
             }
         ],
         amount: 0

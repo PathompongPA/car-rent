@@ -9,11 +9,12 @@ import Promotion from "./promotion.component";
 import QAndAComponent from "./Q&A.component";
 import ResultCar from "./resultCar.component";
 import Review from "./review.component";
-import SearchCar from "./searchCar.component";
+import Brander from "./brander.component";
+import Filter from "./filter.component";
 
 export {
     NavigationBar,
-    SearchCar,
+    Brander,
     ResultCar,
     JourneyBooking,
     Review,
@@ -23,5 +24,6 @@ export {
     GalleryCar,
     Calendar,
     Promotion,
-    DescriptionCar
+    DescriptionCar,
+    Filter
 }

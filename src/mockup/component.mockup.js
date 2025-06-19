@@ -3,6 +3,8 @@ import logo from "../assets/logo.jpg"
 import booking from '../assets/component/journeyBooking/booking.jpg'
 import dayjs from 'dayjs'
 import user1 from '../assets/component/review/img/user1.jpg'
+import doc from "../assets/component/journeyBooking/doc.jpg"
+import handCheck from "../assets/component/journeyBooking/handCheck.jpg"
 
 let component = {
     "navbar": {
@@ -12,7 +14,7 @@ let component = {
                 [
                     {
                         text: "จอง",
-                        link: "booking"
+                        link: "brander"
                     },
                     {
                         text: "ขั้นตอนการจอง",
@@ -35,7 +37,15 @@ let component = {
         }
     },
     "search": {
-        bigImg: bigImg
+        image: {
+            list: [
+                bigImg,
+                bigImg,
+                bigImg,
+                bigImg,
+            ]
+        }
+
     },
     "journeyBooking": {
         title: "เช่าง่ายเพียง 3 นาที",
@@ -55,7 +65,7 @@ let component = {
                 },
                 {
                     title: "เอกสารที่ต้องใช้",
-                    image: "",
+                    image: doc,
                     detail: [
                         "บัตรประชาชน",
                         "ใบขับขี่",
@@ -65,7 +75,7 @@ let component = {
                 },
                 {
                     title: "โอนเงินจอง",
-                    image: "",
+                    image: handCheck,
                     detail: [
                         "เงินจอง 1000",
                         "ประกัน 5000"
@@ -87,6 +97,7 @@ let component = {
         list: [
             {
                 name: "โทรศัพท์",
+                color: "D4903B",
                 list: [
                     {
                         message: "092-847-0991",
@@ -100,6 +111,7 @@ let component = {
             },
             {
                 name: "facebook",
+                color: "011179",
                 list: [
                     {
                         message: "รถเช่า บ้านคุณบี88",
@@ -109,6 +121,7 @@ let component = {
             },
             {
                 name: "line",
+                color: "2EAC00",
                 list: [
                     {
                         message: "@CARRENT88",

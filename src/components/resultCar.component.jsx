@@ -11,12 +11,15 @@ export default function ResultCar() {
 
     return (
         <div className="result-car >> flex flex-col  gap-4 flex-wrap justify-center  | min-w-[150px]  lg:min-h-[300px] w-full lg:gap-4  p-4 | bg-linear-to-b from-white to-blue-2/10  | lg:max-w-7xl md:bg-white md:bg-none snap-start ">
-            <div className="flex flex-wrap justify-center min-h-[50vh] md:min-h-[200px] ">
+            <div className="flex flex-wrap justify-center min-h-[50vh] md:min-h-[200px] gap-4">
                 {cars.map(({ thumbnail, brandName, carName, carId }, index) =>
-                    <Link to={`/car/?id=${carId}`} onClick={() => document.getElementById("gallery").scrollIntoView()}
+                    <Link to={`/car/?id=${carId}`} onClick={() => { window.scrollTo(0, 0) }}
                         className="result-car__card --btn >> flex flex-col items-center |
-                        
-                                  text-blue-1 rounded-lg |
+                                bg-gray-1/40
+                                md:bg-transparent
+                                  text-blue-2
+                                   rounded-lg |
+                                   pb-6
                                   w-full
                                   sm:w-[350px]
                                   active:text-white active:bg-blue-2/70 

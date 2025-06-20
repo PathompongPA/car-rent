@@ -28,12 +28,12 @@ let car = {
     brand: {
         list: [
             {
-                brandName: "Bmw",
-                img: bmw
+                brandName: "Mercedes Benz",
+                img: benz
             },
             {
-                brandName: "Benz",
-                img: benz
+                brandName: "Bmw",
+                img: bmw
             },
             {
                 brandName: "Mini",
@@ -60,8 +60,8 @@ for (let index = 0; index < 5; index++) {
     let benzA200 = {
         carId: index,
         carName: "A200-demo-" + index,
-        brandName: car.brand.list[1].brandName,
-        description: "this is demo description.",
+        brandName: car.brand.list[0].brandName,
+        description: " this is demo description. this is demo description. this is demo description. this is demo description. this is demo description. this is demo description. this is demo description. ",
         thumbnail: a200thumbnail,
         offer: [
             {
@@ -111,7 +111,7 @@ for (let index = 5; index < 10; index++) {
         carId: index,
         carName: "z4-demo-" + index,
         brandName: "Bmw",
-        description: "this is demo description.",
+        description: " this is demo description. this is demo description. this is demo description. this is demo description. this is demo description. this is demo description. this is demo description. ",
         thumbnail: thumbnail,
         offer: [
             {

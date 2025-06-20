@@ -43,7 +43,7 @@
   }
 
   .active {
-    @apply bg-radial to-black/10 from-0%
+    @apply bg-radial to-black/10 from-0% duration-75 md:duration-300
     /* bg-gradient-to-tr from-blue-2 to-blue-1/80 */
     /* bg-gradient-to-tr from-blue-2 to-blue-1/80 text-white */
   }

@@ -8,21 +8,18 @@ export default function Filter() {
     return (
         <div
             className=" search-car__filter ...  
-            bg-gray-1/50
-                        md:bg-gradient-to-t md:from-gray-1 md:to-white 
-                        w-full
-                        md:w-fit
-                        md:max-w-7xl
-                        p-2
-                        md:p-4
-                        pt-4
-                        py-3
-                        md:px-16
-                        gap-4
-                        md:gap-4
-                        md:rounded-lg
                         flex
                         flex-col
+                    bg-gray-1/40
+                        md:bg-gradient-to-t md:from-gray-1 md:to-white 
+                        md:w-fit
+                        md:max-w-7xl
+                        pt-2
+                        px-4
+                        pb-6
+                        md:px-16
+                        md:gap-4
+                        md:rounded-lg
                         md:flex-row
                         "
         >
@@ -30,12 +27,23 @@ export default function Filter() {
 
             <div
                 className=" search-car__card ... 
+                --scroll-hide
                 flex 
+                flex-col
                 flex-wrap
                 items-center
-                md:flex-11/12
                 justify-center
-                gap-2
+                md:flex-11/12
+                h-[100px]
+                overflow-x-scroll
+                overflow-y-hidden
+                md:h-fit
+                md:flex-row
+                md:flex-nowrap
+                md:pt-4
+                md:overflow-visible
+                w-full
+                gap-1
                             md:gap-8
                             "
             >
@@ -44,25 +52,23 @@ export default function Filter() {
                     <Link
                         to={`/?brand=${brandName}`}
                         className={` search-car__brand-card --btn ${searchBrand === brandName && "active"} ... 
-                            w-[65px]
+                            aspect-1/1
+                            w-[100px]
                             p-1
-                md:min-w-[150px]
-                aspect-1/1
-                md:p-4
-                md:pb-1
-                rounded-lg
-                            
+                            md:min-w-[150px]
+                            md:px-4
+                            rounded-lg
                                     `}
                         key={index}
                     >
-                        <img className="search-car__brand-image >> w-full  aspect-1/1 object-scale-down | md:aspect-4/3 | md:object-scale-down | " src={img} alt="" />
-                        <p className="search-car__brand-name >> hidden | text-center font-bold text-blue-1| md:block" >{brandName}</p>
+                        <img className="search-car__brand-image >> w-full  aspect-1/1 object-scale-down text-blue-2 | md:aspect-1/1 | md:object-scale-down | " src={img} alt="" />
+                        <p className="search-car__brand-name >> hidden | text-center font-bold text-blue-2 | md:block" >{brandName}</p>
                     </Link>
                 )}
             </div>
 
 
-            <Link to={`/?brand=all`} className={`search-car__btn-all --btn *** text-center ${searchBrand === "all" | searchBrand === null && "active"} >> py-2 px-4 w-full md:w-fit | font-bold | rounded-lg | md:py-2.5 md:px-4 `} > All </Link>
+            <Link to={`/?brand=all`} className={`search-car__btn-all --btn *** text-center ${searchBrand === "all" | searchBrand === null && "active"} >> py-3 px-8 w-[95%] md:w-fit | text-blue-2 font-bold | rounded-lg | md:py-2.5 md:px-4 `} > ทั้งหมด</Link>
 
         </div>
 

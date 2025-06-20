@@ -67,7 +67,7 @@ export default function Calendar() {
                         <h1 className="calendar__day-in-week *** rounded-lg p-2 | text-center font-black text-white bg-blue-2 | lg:p-0 lg:text-title-3 " key={`day-in-week-${index}`}>{dayInWeek}</h1>)}
                 </div>
 
-                <div className={`calendar__container-day *** grid grid-rows grid-cols-7 items-center | gap-1 min-h-[55vh] | text-description-1  `}>
+                <div className={`calendar__container-day *** grid grid-rows grid-cols-7 items-center | gap-1 max-h-[55vh] | text-description-1  `}>
                     {booking && arrayDay.map((day) => {
                         let isBooking = booking.some((element) => element.format("YYYY-MM-DD") === day.format("YYYY-MM-DD"))
                         let isToday = toDay === day.format("YYYY-MM-DD")

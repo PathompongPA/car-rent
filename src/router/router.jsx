@@ -1,6 +1,6 @@
 import { createHashRouter } from "react-router";
 import { HomePage } from "../pages";
-import { Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, ResultCar, Review } from "../components";
+import { Brander, Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, ResultCar, Review } from "../components";
 
 const router = createHashRouter([
     {

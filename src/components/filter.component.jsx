@@ -11,6 +11,7 @@ export default function Filter() {
                         flex
                         flex-col
                     bg-gray-1/40
+                    w-full
                         md:bg-gradient-to-t md:from-gray-1 md:to-white 
                         md:w-fit
                         md:max-w-7xl

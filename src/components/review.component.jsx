@@ -32,7 +32,7 @@ export default function Review() {
                     </div>
                 )}
 
-                <div className="review__btn-show-more --btn >> absolute bottom-4 | w-fit p-4 | bg-blue-2 | font-bold text-white text-[18px] | rounded-xl " onClick={handleBtnShowMore}>{!showMore ? "แสดงผลลัพธ์เพิ่มเติม" : "แสดงให้น้อยลง"}</div>
+                <div className="review__btn-show-more --btn >> absolute bottom-4 left-[43%] | w-fit p-4 | bg-blue-2 | font-bold text-white text-[18px] | rounded-xl " onClick={handleBtnShowMore}>{!showMore ? "แสดงผลลัพธ์เพิ่มเติม" : "แสดงให้น้อยลง"}</div>
 
             </div>
 

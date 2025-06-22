@@ -8,7 +8,7 @@ export default function Review() {
         setShowMore(!showMore)
     }
     return (
-        <div id="review" className="review >> flex flex-col justify-center items-center | w-full gap-8  px-4 py-8 pt-8 | md:max-w-7xl md:gap-8 lg:snap-center ">
+        <div id="review" className="review >> flex flex-col justify-center items-center | w-full gap-8  px-4 py-8 pt-24 | md:max-w-7xl md:gap-8 lg:snap-center ">
 
             <h1 className="review__title >> text-center font-bold text-6xl text-blue-1">{title}</h1>
 
@@ -32,7 +32,7 @@ export default function Review() {
                     </div>
                 )}
 
-                <div className="review__btn-show-more --btn >> absolute bottom-4 md:left-[43%] | w-fit p-4 | bg-blue-2 | font-bold text-white text-[18px] | rounded-xl " onClick={handleBtnShowMore}>{!showMore ? "แสดงผลลัพธ์เพิ่มเติม" : "แสดงให้น้อยลง"}</div>
+                <button className="review__btn-show-more --btn >> absolute bottom-4 md:left-[35%] lg:left-[40%] xl:left-[43%] rounded-full | px-8 w-fit p-4 | bg-blue-1 | font-bold text-white text-[18px]" onClick={handleBtnShowMore}>{!showMore ? "แสดงผลลัพธ์เพิ่มเติม" : "แสดงให้น้อยลง"}</button>
 
             </div>
 

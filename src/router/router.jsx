@@ -26,9 +26,9 @@ const router = createHashRouter([
             <div className="flex flex-col justify-center items-center">
                 <NavigationBar />
                 <GalleryCar />
-                <DescriptionCar />
                 <Calendar />
                 <Promotion />
+                <DescriptionCar />
                 <Contact />
                 <JourneyBooking />
                 <Review />

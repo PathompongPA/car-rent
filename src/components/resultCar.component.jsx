@@ -21,7 +21,8 @@ export default function ResultCar() {
                                    rounded-lg |
                                    pb-6
                                   w-full
-                                  sm:w-[350px]
+                                  sm:w-[300px]
+                                  md:w-[350px]
                                   active:text-white active:bg-blue-2/70 
                                   hover:text-white hover:bg-blue-2/90
                                    "

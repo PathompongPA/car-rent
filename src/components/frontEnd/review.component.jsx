@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function Review() {
     const { title, description, list, amount } = mockup.component.review;

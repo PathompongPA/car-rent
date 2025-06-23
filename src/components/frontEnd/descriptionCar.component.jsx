@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router";
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function DescriptionCar() {
     const [search] = useSearchParams()

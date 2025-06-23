@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 import { useSearchParams } from "react-router";
 
 export default function GalleryCar() {

@@ -1,4 +1,4 @@
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function Contact() {
     const { title, list } = mockup.component.contact;

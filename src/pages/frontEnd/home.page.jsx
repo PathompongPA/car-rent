@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router"
-import { Brander, Footer, NavigationBar, QAndAComponent } from "../components"
+import { Brander, Footer, NavigationBar, QAndAComponent } from "../../components/frontEnd"
 import { useEffect } from "react"
 
 export default function HomePage() {

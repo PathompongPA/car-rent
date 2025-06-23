@@ -1,4 +1,4 @@
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function Footer() {
     const { img, p1, p2 } = mockup.component.footer;

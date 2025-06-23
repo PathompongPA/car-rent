@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function Brander() {
     const { list } = mockup.component.search.image;

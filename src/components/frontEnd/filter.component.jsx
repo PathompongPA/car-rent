@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router";
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function Filter() {
     const { brand } = mockup.car;

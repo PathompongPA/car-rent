@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { mockup } from "../mockup";
+import { mockup } from "../../mockup";
 
 export default function NavigationBar() {
     const { component } = mockup;

@@ -1,4 +1,4 @@
-import { mockup } from "../mockup"
+import { mockup } from "../../mockup"
 
 export default function QAndAComponent() {
     const { list } = mockup.component.QA;

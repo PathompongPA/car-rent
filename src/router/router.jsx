@@ -1,16 +1,20 @@
 import { createHashRouter } from "react-router";
 import { Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, ResultCar, Review } from "../components/frontEnd";
 import { HomePage } from "../pages/frontEnd";
-import { FormBrandCar, FormCar } from "../components/admin";
+import { Admin, FormCar } from "../components/admin";
+import { fetchApi } from "../utility";
 
 const router = createHashRouter([
     {
         path: "/224",
         element:
-            <div className="">
-                <FormBrandCar />
+            <div className="bg-gray-900 text-white flex flex-col border-4 min-h-[100vh] justify-center items-center">
+                <Admin />
                 <FormCar />
-            </div>
+            </div>,
+        loader: async () => {
+            return await fetchApi("GET", "/api/car/brand")
+        }
     },
     {
         path: "/",

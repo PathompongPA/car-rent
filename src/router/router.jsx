@@ -8,7 +8,8 @@ const router = createHashRouter([
     {
         path: "/224",
         element:
-            <div className="bg-gray-900 text-white flex flex-col border-4 min-h-[100vh] justify-center items-center">
+            <div className="bg-gray-900 text-white flex flex-col min-h-[100vh] items-center">
+                <h1 className="text-title-1 ">Admin page</h1>
                 <Admin />
                 <FormCar />
             </div>,

@@ -8,14 +8,15 @@ export default function Admin() {
     }, [data])
 
     return (
-        <div className="admin *** flex flex-col gap-4">
-            <FormBrandCar />
-            <div className="admin__container-card-brand *** flex flex-wrap gap-2">
+        <div className="admin *** flex gap-4 overflow-hidden w-7xl ">
+            <div className="flex border w-[20%]">
+                <FormBrandCar />
+            </div>
+            <div className="admin__container-card-brand *** border w-[100%] flex gap-2 flex-nowrap relative overflow-x-auto ">
                 {data.map((item, index) =>
                     <FormBrandCar data={item} isCard={true} index={index} key={item.brandId} />
                 )}
             </div>
-
         </div>
     )
 

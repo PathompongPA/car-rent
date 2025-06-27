@@ -71,19 +71,20 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
     }
 
     return (
-        <form className={`form-${index} *** flex flex-col border-white w-[200px] border-2  `} key={index} onSubmit={(event) => { event.preventDefault() }} >
+        <form className={`form-${index} *** flex flex-col w-[200px] bg-gray-800 p-4 gap-2 rounded-lg `} key={index} onSubmit={(event) => { event.preventDefault() }} >
 
             <input type="hidden" value={isCard ? id : undefined} name="brandId" />
-            <input className={`form__brand-id-${index} *** text-white border text-center`} type="text" placeholder="กรุณากรอกชื่อ Brand" defaultValue={name} readOnly={isCard} name="brandName" />
 
-            <div className={`form__container-input-image-${index} *** relative flex flex-col justify-center items-center aspect-1/1 border w-[200px]`}>
-                <input className={`form__input-image-${index} *** ${isCard && "invisible"} border border-red-600 absolute w-[200px] aspect-1/1`} type="file" id="" placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
-                <img className={`form__display-img-${index} *** max-w-[200px] aspect-1/1 bg-gray-600  `} src={logo} alt="" />
+            <input className={`form__brand-id-${index} *** text-white text-center`} type="text" placeholder="กรุณากรอกชื่อ Brand" defaultValue={name} readOnly={isCard} name="brandName" />
+
+            <div className={`form__container-input-image-${index} *** relative flex flex-col justify-center items-center aspect-1/1 w-full p-4`}>
+                <input className={`form__input-image-${index} *** cursor-pointer ${isCard && "invisible"} absolute w-[80%] aspect-1/1 rounded-lg`} type="file" id="" placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
+                <img className={`form__display-img-${index} ***  aspect-1/1 object-cover bg-gray-700 rounded-lg `} src={logo} alt="" />
             </div>
 
-            <div className={`form__container-btn-${index} *** flex gap-4`}>
-                <button className={`form__btn-save-${index} *** --btn flex-1/2 bg-lime-900 ${isCard && "hidden"} `} type="button" onClick={handleBtnSave}>บันทึก</button>
-                <button className={`form__btn-delete-${index} *** --btn flex-1/2 ${!isCard && "hidden"} `} type="button" onClick={handleBtnDelte}>ลบ</button>
+            <div className={`form__container-btn-${index} *** flex gap-4 *:rounded-lg *:p-2 `}>
+                <button className={`form__btn-save-${index} *** --btn flex-1/2 bg-lime-800 ${isCard && "hidden"} `} type="button" onClick={handleBtnSave}>บันทึก</button>
+                <button className={`form__btn-delete-${index} *** --btn flex-1/2 bg-red-800 ${!isCard && "hidden"} `} type="button" onClick={handleBtnDelte}>ลบ</button>
                 <button className={`form__btn-cancel-${index} *** --btn flex-1/2 hidden `} type="button" onClick={handleBtnEdit}>ยกเลิก</button>
                 <button className={`form__btn-edit-${index} *** --btn flex-1/2 bg-blue-800 ${!isCard && "hidden"}`} type="button" onClick={handleBtnEdit}>แก้ไข</button>
             </div>

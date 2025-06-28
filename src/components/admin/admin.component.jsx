@@ -7,7 +7,6 @@ export default function Admin() {
     useEffect(() => {
     }, [data])
 
-    console.log(data);
     return (
         <div className="admin *** flex gap-4 overflow-hidden w-7xl ">
             <div className="flex w-[20%]">

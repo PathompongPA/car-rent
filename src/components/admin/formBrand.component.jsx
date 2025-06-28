@@ -50,10 +50,13 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
     }
 
     function handleBtnEdit() {
-        let inputName = document.getElementsByClassName(`form__brand-id-${index}`)[0]
+        let inputName = document.getElementsByClassName(`form__brand-name-${index}`)[0]
         inputName.readOnly = !inputName.readOnly
+        inputName.classList.toggle("bg-gray-700")
+        inputName.focus()
         let inputFile = document.getElementsByClassName(`form__input-image-${index}`)[0]
         inputFile.classList.toggle("invisible")
+        document.getElementsByClassName(`form__label-image-${index}`)[0].classList.toggle("invisible")
         document.getElementsByClassName(`form__btn-delete-${index}`)[0].classList.toggle("hidden")
         document.getElementsByClassName(`form__btn-save-${index}`)[0].classList.toggle("hidden")
         document.getElementsByClassName(`form__btn-edit-${index}`)[0].classList.toggle("hidden")
@@ -75,10 +78,11 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
 
             <input type="hidden" value={isCard ? id : undefined} name="brandId" />
 
-            <input className={`form__brand-id-${index} *** text-white text-center`} type="text" placeholder="กรุณากรอกชื่อ Brand" defaultValue={name} readOnly={isCard} name="brandName" />
+            <input className={`form__brand-name-${index} *** text-white text-center rounded-lg`} type="text" placeholder="กรุณากรอกชื่อ Brand" defaultValue={name} readOnly={isCard} name="brandName" />
 
-            <div className={`form__container-input-image-${index} *** relative flex flex-col justify-center items-center aspect-1/1 w-full p-4`}>
-                <input className={`form__input-image-${index} *** cursor-pointer ${isCard && "invisible"} absolute w-[80%] aspect-1/1 rounded-lg`} type="file" id="" placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
+            <div className={`form__container-input-image-${index} *** relative flex flex-col justify-center items-center aspect-1/1 w-full `}>
+                <label className={`form__label-image-${index} *** ${isCard && "invisible"} absolute w-full aspect-1/1 text-center rounded-lg flex justify-center items-center bg-gray-700/70 `} htmlFor="brandImg">{isCard ? "กดที่รูปเพื่อเปลี่ยน" : "กดเพื่อเลือกรูป"}</label>
+                <input className={`form__input-image-${index} *** text-transparent cursor-pointer ${isCard && "invisible"} absolute w-[80%] aspect-1/1 rounded-lg`} type="file" id="" placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
                 <img className={`form__display-img-${index} ***  aspect-1/1 object-cover bg-gray-700 rounded-lg `} src={logo} alt="" />
             </div>
 

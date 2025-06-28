@@ -7,13 +7,14 @@ export default function Admin() {
     useEffect(() => {
     }, [data])
 
+    console.log(data);
     return (
         <div className="admin *** flex gap-4 overflow-hidden w-7xl ">
-            <div className="flex border w-[20%]">
+            <div className="flex w-[20%]">
                 <FormBrandCar />
             </div>
-            <div className="admin__container-card-brand *** border w-[100%] flex gap-2 flex-nowrap relative overflow-x-auto ">
-                {data.map((item, index) =>
+            <div className="admin__container-card-brand *** w-[100%] flex gap-2 flex-nowrap relative overflow-x-auto ">
+                {data.data.map((item, index) =>
                     <FormBrandCar data={item} isCard={true} index={index} key={item.brandId} />
                 )}
             </div>

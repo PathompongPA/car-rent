@@ -20,13 +20,14 @@ export default function FormCar({
         ]
     } }) {
 
-    const { id, carName, carDescription, brandId, Imgs, offers: offer } = data;
+    const { id, carName, carDescription, brandId, Imgs, offers } = data;
     const { Brand } = useLoaderData();
     let navigate = useNavigate()
 
     const [images, setImages] = useState(Imgs)
-    const [offers, setOffers] = useState(offer)
+    const [stateOffer, setOffers] = useState(offers)
     const [IsCard, setIsCard] = useState(isCard)
+
     useEffect(() => {
     }, [IsCard])
 
@@ -106,7 +107,7 @@ export default function FormCar({
                 offerAmountDay: day,
                 offerPrice: prices[index]
             }))
-            .filter(item => item.day !== "" && item.price !== "");
+            .filter(item => item.offerAmountDay !== "" && item.offerPrice !== "");
 
     }
 
@@ -124,13 +125,15 @@ export default function FormCar({
             const { isSuccess, msg } = await fetchApi((index !== "") ? "PUT" : "POST", "/api/car/", formCar, {})
             console.log(">>>>>>>>>", isSuccess)
             isSuccess ? alert("บันทึกสำเร็จ") : alert(msg)
-            isSuccess && recallPage() & toggleEdit() & resetForm()
+            isSuccess && recallPage()
         }
     }
 
     function addNewTair() {
-        setOffers([...offers, offers[offer.length - 1]])
-        console.log(offers)
+        setOffers([
+            ...stateOffer,
+            { id: undefined, offerAmountDay: 0, offerPrice: 0 }
+        ]);
     }
 
     async function handleBtnDelete() {
@@ -148,8 +151,9 @@ export default function FormCar({
 
     function btnDelete(e) {
         let btn = e.target.getAttribute("data-index")
-        let newOffer = offers
+        let newOffer = [...stateOffer]
         newOffer.splice(btn, 1)
+        console.log("new offer ", newOffer)
         setOffers(newOffer)
     }
 
@@ -196,16 +200,16 @@ export default function FormCar({
             <details className={`form-car__container-tair-${index} ***  flex flex-col`} >
                 <summary className="">ระดับราคา</summary>
                 <div className={`form-car__container-tair-${index} ***  flex flex-col gap-2 pt-2 ${IsCard && "max-h-[150px]"} overflow-y-auto overflow-x-hidden pt-4 `}>
-                    {offers.map((offer, _index) => {
+                    {stateOffer.map((offer, _index) => {
                         console.log(offer)
                         return (
-                            <div className="  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center" key={_index}>
+                            <div className={`form-car__container-tair-${index}  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center`} key={`${index}-${"tair"}-${_index}`}>
                                 <input type="hidden" defaultValue={offer.id} />
                                 <input className="col-span-2 bg-gray-600" type="number" placeholder="จำนวน" name="day[]" readOnly={IsCard} defaultValue={offer.offerAmountDay} min={0} />
                                 <label >วัน</label>
                                 <input className="col-span-2 bg-gray-600" type="number" placeholder="ราคา" name="price[]" readOnly={IsCard} defaultValue={offer.offerPrice} min={0} />
                                 <label >บาท</label>
-                                <button className={` --btn col-span-1 bg-red-800 text-white p-2 rounded-lg hover:bg-red-600 btn-delete-tair ${IsCard && "hidden"}`} data-index={_index} onClick={btnDelete}>ลบ</button>
+                                <button className={`form-car__btn-delete-tair-${index} --btn col-span-1 bg-red-800 text-white p-2 rounded-lg hover:bg-red-600 btn-delete-tair ${IsCard && "hidden"}`} data-index={_index} onClick={btnDelete}>ลบ</button>
                             </div>
                         )
                     })}

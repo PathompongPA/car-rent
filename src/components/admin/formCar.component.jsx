@@ -149,11 +149,10 @@ export default function FormCar({
         setIsCard(!IsCard)
     }
 
-    function btnDelete(e) {
-        let btn = e.target.getAttribute("data-index")
+    function handleBtnDeleteTair(e) {
+        let position = e.target.getAttribute("data-index")
         let newOffer = [...stateOffer]
-        newOffer.splice(btn, 1)
-        console.log("new offer ", newOffer)
+        newOffer.splice(position, 1)
         setOffers(newOffer)
     }
 
@@ -203,17 +202,17 @@ export default function FormCar({
                     {stateOffer.map((offer, _index) => {
                         console.log(offer)
                         return (
-                            <div className={`form-car__container-tair-${index}  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center`} key={`${index}-${"tair"}-${_index}`}>
+                            <div className={`form-car__container-tair-${index}  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center`} key={offer.id}>
                                 <input type="hidden" defaultValue={offer.id} />
                                 <input className="col-span-2 bg-gray-600" type="number" placeholder="จำนวน" name="day[]" readOnly={IsCard} defaultValue={offer.offerAmountDay} min={0} />
                                 <label >วัน</label>
                                 <input className="col-span-2 bg-gray-600" type="number" placeholder="ราคา" name="price[]" readOnly={IsCard} defaultValue={offer.offerPrice} min={0} />
                                 <label >บาท</label>
-                                <button className={`form-car__btn-delete-tair-${index} --btn col-span-1 bg-red-800 text-white p-2 rounded-lg hover:bg-red-600 btn-delete-tair ${IsCard && "hidden"}`} data-index={_index} onClick={btnDelete}>ลบ</button>
+                                <button className={`form-car__btn-delete-tair-${index} --btn col-span-1 bg-red-800 text-white p-2 rounded-lg hover:bg-red-600 btn-delete-tair ${IsCard && "hidden"}`} data-index={_index} onClick={handleBtnDeleteTair}>ลบ</button>
                             </div>
                         )
                     })}
-                    <button className={`--btn bg-gray-600 p-2 rounded-lg w-full ${IsCard && "hidden"}`} onClick={addNewTair}>เพิ่มระดับราคา</button>
+                    <button className={` hover:text-golden-1 cursor-pointer bg-gray-600 p-2 rounded-lg w-full ${IsCard && "hidden"}`} onClick={addNewTair}>เพิ่มระดับราคา</button>
                 </div>
             </details>
 

@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router";
-import { fetchApi, readFile } from "../../utility";
+import { fetchApi } from "../../utility";
 
-export default function FormBrandCar({ index = "", data = { brandId: null, brandImg: null, brandName: null }, isCard = false }) {
+export default function FormBrandCar({ index = "", data = { id: null, brandImg: null, brandName: null }, isCard = false }) {
     const navigate = useNavigate();
-    const { brandId: id, brandName: name, brandImg: logo } = data;
+    let { id, brandName: name, brandImg: logo } = data;
+    console.log("data :: ", data)
 
     function resetForm() {
         document.getElementsByClassName(`form-${index}`)[0].reset()
@@ -20,7 +21,7 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
 
     function validationForm(form) {
         let isHaveId = form.get("brandName").length > 0
-        let isHaveImage = form.get("brandImg").name.length > 0 | isCard
+        let isHaveImage = form.getAll("brandImg").length > 0 | isCard
         !isHaveId && alert("กรุณากรอก ยี่ห้อ")
         !isHaveImage && alert("กรุณากรอก รูป")
         return isHaveId && isHaveImage
@@ -28,21 +29,23 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
 
     async function handleBtnSave() {
         let form = getForm()
-        !isCard && form.delete("brandId")
+        // form.getAll("brandImg")[0].size === 0 && form.append("brandImg", "")
+        !isCard && form.delete("id")
         if (validationForm(form)) {
-            const { isSuccess, msg } = await fetchApi(isCard ? "PUT" : "POST", "/api/car/brand/", form, {});
+            const { isSuccess, msg } = await fetchApi(isCard ? "PUT" : "POST", "/api/car/brand/", form, {})
             isCard ? isSuccess ? alert(`แก้ไขสำเร็จ`) : alert(`แก้ไขผิดพลาด <${msg}>`) : isSuccess ? alert(`บันทึกสำเร็จ`) : alert(`บันทึกผิดพลาด <${msg}>`)
             !isCard & isSuccess && resetForm() & recallPage()
-            isCard & isSuccess && handleBtnEdit()
+            isCard & isSuccess && handleBtnEdit() & recallPage()
         }
     }
 
     async function handleBtnDelte() {
         let form = getForm()
         let brandName = form.get("brandName")
-        let brandId = form.get("brandId")
+        let brandId = form.get("id")
         if (confirm(`คุณต้องการลบ ${brandName} ออกจากฐานข้อมูล ใช่ หรือ ไม่`) === true) {
-            let body = JSON.stringify({ brandId: brandId })
+            let body = JSON.stringify({ "id": brandId })
+            console.log("bradn id  : ", body)
             const { isSuccess, msg } = await fetchApi("DELETE", "/api/car/brand/", body)
             isSuccess ? alert(`ลบ ${brandName} สำเร็จ`) : alert(`ลบ ${brandName} ไม่สำเร็จ <${msg}>`)
             isSuccess && recallPage()
@@ -65,8 +68,8 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
 
     async function handleInputImgChange(event) {
         try {
-            let img = await readFile(event.target.files[0])
-            document.getElementsByClassName(`form__display-img-${index}`)[0].src = img
+            let file = event.target.files[0]
+            document.getElementsByClassName(`form__display-img-${index}`)[0].src = URL.createObjectURL(file)
         } catch (error) {
             error
             document.getElementsByClassName(`form__display-img-${index}`)[0].src = null;
@@ -76,13 +79,13 @@ export default function FormBrandCar({ index = "", data = { brandId: null, brand
     return (
         <form className={`form-${index} *** flex flex-col w-[200px] bg-gray-800 p-4 gap-2 rounded-lg `} key={index} onSubmit={(event) => { event.preventDefault() }} >
 
-            <input type="hidden" value={isCard ? id : undefined} name="brandId" />
+            <input type="hidden" value={isCard ? id : undefined} name="id" />
 
             <input className={`form__brand-name-${index} *** text-white text-center rounded-lg`} type="text" placeholder="กรุณากรอกชื่อ Brand" defaultValue={name} readOnly={isCard} name="brandName" />
 
             <div className={`form__container-input-image-${index} *** relative flex flex-col justify-center items-center aspect-1/1 w-full `}>
-                <label className={`form__label-image-${index} *** ${isCard && "invisible"} absolute w-full aspect-1/1 text-center rounded-lg flex justify-center items-center bg-gray-700/70 `} htmlFor="brandImg">{isCard ? "กดที่รูปเพื่อเปลี่ยน" : "กดเพื่อเลือกรูป"}</label>
-                <input className={`form__input-image-${index} *** text-transparent cursor-pointer ${isCard && "invisible"} absolute w-[80%] aspect-1/1 rounded-lg`} type="file" id="" placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
+                <label className={`form__label-image-${index} *** ${isCard && "invisible"} cursor-pointer absolute w-full aspect-1/1 text-center rounded-lg flex justify-center items-center bg-gray-700/70 `} htmlFor={`input-brand-image-${index}`}>{isCard ? "กดที่รูปเพื่อเปลี่ยน" : "กดเพื่อเลือกรูป"}</label>
+                <input className={`form__input-image-${index} *** hidden ${isCard && "invisible"} absolute w-[80%] aspect-1/1 rounded-lg`} type="file" id={`input-brand-image-${index}`} placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
                 <img className={`form__display-img-${index} ***  aspect-1/1 object-cover bg-gray-700 rounded-lg `} src={logo} alt="" />
             </div>
 

@@ -3,7 +3,7 @@ export default async function fetchApi(method, path, body, headers = { 'Accept':
 
     return (
         await fetch(
-            `http://localhost:9999${path}`,
+            `http://${location.hostname}:9999${path}`,
             {
                 method: method,
                 headers: headers,

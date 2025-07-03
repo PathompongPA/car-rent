@@ -1,7 +1,9 @@
 import fetchApi from "./fetchApi"
-import { readFile } from "./readFile"
+import getForm from "./getForm"
+import readFile from "./readFile.js"
 
 export {
-    readFile,
-    fetchApi
+    fetchApi,
+    getForm,
+    readFile
 }

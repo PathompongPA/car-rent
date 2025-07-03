@@ -1,4 +1,4 @@
-const readFile = (file) => {
+export default function readFile(file) {
     if (file !== undefined) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -16,4 +16,3 @@ const readFile = (file) => {
     }
     return file
 };
-export { readFile }

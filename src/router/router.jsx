@@ -4,6 +4,16 @@ import { HomePage } from "../pages/frontEnd";
 import { Admin, FormCar } from "../components/admin";
 import { fetchApi } from "../utility";
 
+async function adminLoader() {
+    const [brandRes, carRes] = await Promise.all([
+        fetchApi("GET", "/api/car/brand"),
+        fetchApi("GET", "/api/car/")
+    ])
+    const Brand = await brandRes
+    const Car = await carRes
+    return { Brand, Car }
+}
+
 const router = createHashRouter([
     {
         path: "/224",
@@ -11,11 +21,8 @@ const router = createHashRouter([
             <div className="bg-gray-900 text-white flex flex-col min-h-[100vh] items-center">
                 <h1 className="text-title-1 ">Admin page</h1>
                 <Admin />
-                <FormCar />
             </div>,
-        loader: async () => {
-            return await fetchApi("GET", "/api/car/brand")
-        }
+        loader: adminLoader
     },
     {
         path: "/",
@@ -30,9 +37,12 @@ const router = createHashRouter([
                         <JourneyBooking />,
                         <Review />,
                         <Contact />
-                    ]
+                    ],
+                loader: async () => {
+                    return await fetchApi("GET", "/api/car/brand")
+                }
             },
-        ]
+        ],
     },
     {
         path: "/car",
@@ -47,7 +57,8 @@ const router = createHashRouter([
                 <JourneyBooking />
                 <Review />
                 <Footer />
-            </div>
+            </div>,
+
     },
     {
         path: "*",

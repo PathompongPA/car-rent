@@ -1,10 +1,10 @@
-import { Link, useSearchParams } from "react-router";
-import { mockup } from "../../mockup";
+import { Link, useLoaderData, useSearchParams } from "react-router";
 
 export default function Filter() {
-    const { brand } = mockup.car;
     const [searchParam] = useSearchParams();
     let searchBrand = searchParam.get('brand')
+    let data = useLoaderData()
+    console.log(data);
     return (
         <div
             className=" search-car__filter ...  
@@ -53,7 +53,7 @@ export default function Filter() {
                             "
             >
 
-                {brand.list.map(({ brandName, img }, index) =>
+                {data.data.map(({ brandName, brandImg }, index) =>
                     <Link
                         to={`/?brand=${brandName}`}
                         className={` search-car__brand-card --btn ${searchBrand === brandName && "active"} ... 
@@ -66,9 +66,9 @@ export default function Filter() {
                             xl:px-4
                             rounded-lg
                                     `}
-                        key={index}
+                        key={brandName + index}
                     >
-                        <img className="search-car__brand-image >> w-full  aspect-1/1 object-scale-down text-blue-2 | md:aspect-1/1 | md:object-scale-down | " src={img} alt="" />
+                        <img className="search-car__brand-image >> w-full  aspect-1/1 object-scale-down text-blue-2 | md:aspect-1/1 | md:object-scale-down | " src={brandImg} alt="" />
                         <p className="search-car__brand-name  >> group-hover:text-golden-1 hidden | text-center font-bold text-blue-2 | xl:block" >{brandName}</p>
                     </Link>
                 )}

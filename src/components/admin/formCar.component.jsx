@@ -10,6 +10,7 @@ export default function FormCar({
         brandId: undefined,
         carName: undefined,
         carDescription: undefined,
+        carThumbnail: undefined,
         Imgs: [],
         offers: [
             {
@@ -20,13 +21,14 @@ export default function FormCar({
         ]
     } }) {
 
-    const { id, carName, carDescription, brandId, Imgs, offers } = data;
+    const { id, carName, carDescription, brandId, Imgs, offers, carThumbnail } = data;
     const { Brand } = useLoaderData();
     let navigate = useNavigate()
 
     const [images, setImages] = useState(Imgs)
     const [stateOffer, setOffers] = useState(offers)
     const [IsCard, setIsCard] = useState(isCard)
+    const [thumbnail, setThumbnail] = useState(carThumbnail)
 
     useEffect(() => {
     }, [IsCard])
@@ -89,12 +91,11 @@ export default function FormCar({
         let isCarNameNotNull = form.get("carName").length > 0
         let isBrandIdNotNull = form.get("brandId") !== null
         let isCarDescriptionNotNull = form.get("carDescription").length > 0
-        let isCarImageNotNull = form.getAll("carImage").length > 0
-
+        let isHaveCarThumbnail = (form.get("carThumbnail").name !== "") | !IsCard
+        !isHaveCarThumbnail && alert("กรุณาเลือกรูปปก รถ")
         !isCarNameNotNull && alert("กรุณากรอกชื่อ รถ")
         !isBrandIdNotNull && alert("กรุณาเลือกยี่ห้อ รถ")
         !isCarDescriptionNotNull && alert("กรุณากรอกคำอธิบาย รถ")
-        !isCarImageNotNull && alert("กรุณาเลือกรูป รถ")
 
         return isCarNameNotNull & isBrandIdNotNull
     }
@@ -123,9 +124,9 @@ export default function FormCar({
 
         if (isFormCarValid & isTairPriceValid) {
             const { isSuccess, msg } = await fetchApi((index !== "") ? "PUT" : "POST", "/api/car/", formCar, {})
-            console.log(">>>>>>>>>", isSuccess)
             isSuccess ? alert("บันทึกสำเร็จ") : alert(msg)
-            isSuccess && recallPage()
+            isSuccess && recallPage() & resetForm()
+            isSuccess & index !== "" && toggleEdit()
         }
     }
 
@@ -156,12 +157,24 @@ export default function FormCar({
         setOffers(newOffer)
     }
 
+    async function handleInputThumbnailChange() {
+        let form = getForm(`form-car-${index}`)
+        let file = form.get("carThumbnail")
+        file.name !== "" && setThumbnail(URL.createObjectURL(file))
+    }
+
     return (
 
-        <form className={`form-car-${index} *** bg-gray-800 *:bg-gray-700 flex flex-col h-fit  w-[500px] gap-2 p-4 rounded-lg *:p-2 *:rounded-lg *:w-full`} onSubmit={(event) => { event.preventDefault() }}  >
+        <form className={`form-car-${index} *** w-[300px] h-fit  bg-gray-800 *:bg-gray-700 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
 
-            <fieldset className="  grid grid-cols-2 *:not-first:bg-gray-600  gap-4 p-4 *:p-2 *:rounded-lg *:w-full w-full overflow-x-hidden ">
-                <legend className="">ข้อมูลรถ</legend>
+            <fieldset className="  grid grid-cols-2 *:not-first:bg-gray-600  gap-4 p-4 *:p-2 *:rounded-lg *:w-full overflow-x-hidden ">
+                {!IsCard && <legend className="">ข้อมูลรถ</legend>}
+
+                <div className="col-span-2 relative border">
+                    <label className=" absolute border text-center top-0 left-0 w-full h-full bg-gray-700/60 border-red-600 cursor-pointer justify-center items-center flex" htmlFor={`input-car-thumbnail-${index}`} hidden={IsCard} >เลือกรูปปก</label>
+                    <input className="" id={`input-car-thumbnail-${index}`} name="carThumbnail" type="file" hidden onChange={handleInputThumbnailChange} />
+                    <img className={`form-car__thumbnail-${index} *** w-full aspect-16/9 object-cover `} src={thumbnail} alt="" />
+                </div>
 
                 <input className="form-car__car-id" type="hidden" value={id} name="id" />
 
@@ -169,7 +182,6 @@ export default function FormCar({
                 <select className={`form-car__select-brand-${index} *:text-white`} name="brandId" defaultValue={brandId} disabled={IsCard}  >
                     <option value={undefined} disabled>เลือกยี่ห้อ</option>
                     {Brand.data.map(({ brandName, id }, _index) => {
-                        console.log(id, "|", brandId)
                         return <option className="" key={_index} value={id} >{brandName}</option>
 
                     })}
@@ -200,13 +212,12 @@ export default function FormCar({
                 <summary className="">ระดับราคา</summary>
                 <div className={`form-car__container-tair-${index} ***  flex flex-col gap-2 pt-2 ${IsCard && "max-h-[150px]"} overflow-y-auto overflow-x-hidden pt-4 `}>
                     {stateOffer.map((offer, _index) => {
-                        console.log(offer)
                         return (
-                            <div className={`form-car__container-tair-${index}  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center`} key={offer.id}>
+                            <div className={`form-car__container-tair-${index}  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center`} key={`${index}-${offer.id}`}>
                                 <input type="hidden" defaultValue={offer.id} />
-                                <input className="col-span-2 bg-gray-600" type="number" placeholder="จำนวน" name="day[]" readOnly={IsCard} defaultValue={offer.offerAmountDay} min={0} />
+                                <input className={`form-car__tair-${index}-day-${_index} *** col-span-2 bg-gray-600`} type="number" placeholder="จำนวน" name="day[]" readOnly={IsCard} defaultValue={offer.offerAmountDay} min={0} />
                                 <label >วัน</label>
-                                <input className="col-span-2 bg-gray-600" type="number" placeholder="ราคา" name="price[]" readOnly={IsCard} defaultValue={offer.offerPrice} min={0} />
+                                <input className={`form-car__tair-${index}-price-${_index} *** col-span-2 bg-gray-600`} type="number" placeholder="ราคา" name="price[]" readOnly={IsCard} defaultValue={offer.offerPrice} min={0} />
                                 <label >บาท</label>
                                 <button className={`form-car__btn-delete-tair-${index} --btn col-span-1 bg-red-800 text-white p-2 rounded-lg hover:bg-red-600 btn-delete-tair ${IsCard && "hidden"}`} data-index={_index} onClick={handleBtnDeleteTair}>ลบ</button>
                             </div>

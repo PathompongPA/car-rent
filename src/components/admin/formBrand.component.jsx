@@ -4,7 +4,6 @@ import { fetchApi } from "../../utility";
 export default function FormBrandCar({ index = "", data = { id: null, brandImg: null, brandName: null }, isCard = false }) {
     const navigate = useNavigate();
     let { id, brandName: name, brandImg: logo } = data;
-    console.log("data :: ", data)
 
     function resetForm() {
         document.getElementsByClassName(`form-${index}`)[0].reset()
@@ -45,7 +44,6 @@ export default function FormBrandCar({ index = "", data = { id: null, brandImg: 
         let brandId = form.get("id")
         if (confirm(`คุณต้องการลบ ${brandName} ออกจากฐานข้อมูล ใช่ หรือ ไม่`) === true) {
             let body = JSON.stringify({ "id": brandId })
-            console.log("bradn id  : ", body)
             const { isSuccess, msg } = await fetchApi("DELETE", "/api/car/brand/", body)
             isSuccess ? alert(`ลบ ${brandName} สำเร็จ`) : alert(`ลบ ${brandName} ไม่สำเร็จ <${msg}>`)
             isSuccess && recallPage()
@@ -77,7 +75,7 @@ export default function FormBrandCar({ index = "", data = { id: null, brandImg: 
     }
 
     return (
-        <form className={`form-${index} *** flex flex-col w-[200px] bg-gray-800 p-4 gap-2 rounded-lg `} key={index} onSubmit={(event) => { event.preventDefault() }} >
+        <form className={`form-${index} *** flex flex-col w-[200px] bg-gray-800 p-4 gap-2 rounded-lg snap-center `} key={index} onSubmit={(event) => { event.preventDefault() }} >
 
             <input type="hidden" value={isCard ? id : undefined} name="id" />
 

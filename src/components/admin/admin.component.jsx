@@ -8,23 +8,25 @@ export default function Admin() {
     useEffect(() => {
     }, [Brand, Car])
 
-    console.log("car : ", Car)
+    console.log("repage : ", Car, Brand)
     return (
-        <div className="admin *** flex flex-col gap-4 h-[2000px] ">
-            <div className="flex gap-4 overflow-hidden w-7xl">
-                <div className="flex w-[20%]">
+        <div className="max-w-7xl *:flex *:gap-4 *:p-4 border">
+            <div className="">
+                <div className="">
                     <FormBrandCar />
                 </div>
-                <div className="admin__container-card-brand *** w-[100%] flex gap-2 flex-nowrap relative overflow-x-auto ">
+                <div className="admin__container-card-brand *** w-full flex flex-wrap gap-2 justify-center">
                     {Brand.data.map((item, index) =>
                         <FormBrandCar data={item} isCard={true} index={index} key={item.id} />
                     )}
                 </div>
             </div>
 
-            <div className="flex gap-4 overflow-hidden max-w-7xl overflow-x-hidden ">
-                <FormCar />
-                <div className="flex flex-nowrap overflow-x-auto snap-x relative gap-4">
+            <div className="">
+                <div className="">
+                    <FormCar />
+                </div>
+                <div className="flex flex-wrap gap-2 w-full ">
                     {Car.data.map((item) => <FormCar data={item} isCard={true} index={item.id} key={item.id} />)}
                 </div>
 

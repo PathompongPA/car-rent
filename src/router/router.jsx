@@ -5,13 +5,15 @@ import { Admin, FormCar } from "../components/admin";
 import { fetchApi } from "../utility";
 
 async function adminLoader() {
-    const [brandRes, carRes] = await Promise.all([
+    const [brandRes, carRes, customer] = await Promise.all([
         fetchApi("GET", "/api/car/brand"),
-        fetchApi("GET", "/api/car/")
+        fetchApi("GET", "/api/car/"),
+        fetchApi("GET", "/api/customer/"),
     ])
     const Brand = await brandRes
     const Car = await carRes
-    return { Brand, Car }
+    const Customer = await customer
+    return { Brand, Car, Customer }
 }
 
 const router = createHashRouter([

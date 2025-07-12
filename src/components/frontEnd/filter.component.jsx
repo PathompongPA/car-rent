@@ -3,8 +3,7 @@ import { Link, useLoaderData, useSearchParams } from "react-router";
 export default function Filter() {
     const [searchParam] = useSearchParams();
     let searchBrand = searchParam.get('brand')
-    let data = useLoaderData()
-    console.log(data);
+    let { Brand } = useLoaderData()
     return (
         <div
             className=" search-car__filter ...  
@@ -53,7 +52,7 @@ export default function Filter() {
                             "
             >
 
-                {data.data.map(({ brandName, brandImg }, index) =>
+                {Brand.data.map(({ brandName, brandImg }, index) =>
                     <Link
                         to={`/?brand=${brandName}`}
                         className={` search-car__brand-card --btn ${searchBrand === brandName && "active"} ... 

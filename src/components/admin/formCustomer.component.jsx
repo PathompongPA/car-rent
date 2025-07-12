@@ -122,7 +122,7 @@ export default function FormCustomer
     return (
         <form className={`form-customer-${index} *** *:bg-gray-700 *:p-2 *:rounded-lg rounded-lg bg-gray-800 p-4`}>
             <fieldset className=" grid grid-cols-3 *:not-first:bg-gray-600  *:p-2 *:rounded-lg gap-2">
-                <legend>ข้อมูลลูกค้า </legend>
+                {/* <legend>ข้อมูลลูกค้า </legend> */}
 
                 <input className={`form-customer__id-${index}`} type="hidden" name="id" defaultValue={id} />
                 <input className={`form-customer__name-${index}`} type="text" name="customerName" placeholder="ชื่อ" defaultValue={customerName} readOnly={IsCard} />

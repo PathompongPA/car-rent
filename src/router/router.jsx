@@ -1,30 +1,56 @@
 import { createHashRouter } from "react-router";
 import { Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, ResultCar, Review } from "../components/frontEnd";
 import { HomePage } from "../pages/frontEnd";
-import { Admin, FormCar } from "../components/admin";
+import { Admin, FormBooking, FormCar, FormCustomer } from "../components/admin";
 import { fetchApi } from "../utility";
+import { CarPage, CustomerPage, HistoryBookingPage } from "../pages/admin";
 
 async function adminLoader() {
-    const [brandRes, carRes, customer] = await Promise.all([
+    const [brandRes, carRes, customer, booking] = await Promise.all([
         fetchApi("GET", "/api/car/brand"),
         fetchApi("GET", "/api/car/"),
         fetchApi("GET", "/api/customer/"),
+        fetchApi("GET", "/api/booking?car=e5fae1da-ceec-4121-a158-d6e4a2337d28"),
     ])
     const Brand = await brandRes
     const Car = await carRes
     const Customer = await customer
-    return { Brand, Car, Customer }
+    const Booking = await booking
+    return { Brand, Car, Customer, Booking }
 }
 
 const router = createHashRouter([
     {
         path: "/224",
-        element:
-            <div className="bg-gray-900 text-white flex flex-col min-h-[100vh] items-center">
-                <h1 className="text-title-1 ">Admin page</h1>
-                <Admin />
-            </div>,
-        loader: adminLoader
+        element: <Admin />,
+        children: [
+            {
+                path: "booking",
+                element: <FormBooking />,
+                loader: adminLoader,
+            },
+            {
+                path: "history/booking",
+                element: <HistoryBookingPage />,
+                loader: adminLoader,
+            },
+            {
+                path: "car",
+                element: <CarPage />,
+                loader: adminLoader,
+            },
+            {
+                path: "customer",
+                element: <CustomerPage />,
+                loader: adminLoader,
+            },
+            {
+                path: "ui",
+                element: <FormBooking />,
+                loader: adminLoader,
+            }
+        ],
+        loader: adminLoader,
     },
     {
         path: "/",
@@ -40,14 +66,13 @@ const router = createHashRouter([
                         <Review />,
                         <Contact />
                     ],
-                loader: async () => {
-                    return await fetchApi("GET", "/api/car/brand")
-                }
+                loader: adminLoader
             },
         ],
     },
     {
         path: "/car",
+        loader: adminLoader,
         element:
             <div className="flex flex-col justify-center items-center">
                 <NavigationBar />

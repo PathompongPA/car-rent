@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { mockup } from "../../mockup";
-import { useSearchParams } from "react-router";
+import { useLoaderData, useSearchParams } from "react-router";
 
 export default function GalleryCar() {
     const [searchParame, setSearchParame] = useSearchParams()
-    let parameCarId = Number(searchParame.get("id"))
-    const { brandName, carName, image } = mockup.car.all.list.find((element) => element.carId === parameCarId)
-    const { amount } = mockup.car.all;
-    const amountImage = image.length
+    let parameCarId = searchParame.get("id")
+    parameCarId = parseInt(parameCarId)
+    const { Car } = useLoaderData();
+    // const { brand, carName, Imgs } = Car.data.find((element) => element.id === parameCarId)
+    const { brand, carName, Imgs } = Car.data[parameCarId]
+    const { brandName } = brand;
+    const amount = Car.data.length;
+    const amountImage = Imgs.length
     const [indexBigImg, setIndexBigImg] = useState(0)
+    console.log("car : ", Car)
 
     useEffect(() => {
         document.title = `${document.title} - ${brandName} ${carName} `
@@ -27,7 +31,7 @@ export default function GalleryCar() {
     }
 
     return (
-        <div id="gallery" className="gallery-car *** flex flex-col justify-center items-center | gap-2 | xl:gap-4  md:max-w-7xl lg:snap-center pt-24 xl:pt-24 ">
+        <div id="gallery" className="gallery-car *** flex flex-col justify-center items-center | gap-2 | xl:gap-4  lg:max-w-7xl xl:min-w-7xl lg:snap-center pt-24 xl:pt-24 ">
 
             <div className="gallery-car__container-title *** grid grid-cols-5 w-full items-center | text-title-3 font-black text-blue-1 ">
                 <button className={`gallery-car__btn-pre --btn flex-1/6 h-full ${parameCarId === 0 && "invisible"}`} onClick={() => { setSearchParame({ "id": parameCarId > 0 ? parameCarId - 1 : parameCarId }) }}>{`<`}</button>
@@ -38,9 +42,9 @@ export default function GalleryCar() {
             <div className="gallery-car__container-img *** flex flex-wrap justify-center items-center relative  gap-0 px-4 w-full md:gap-4 ">
 
                 <h1 className="gallery-car__amount-img ***  select-none h-fit absolute right-[26px] top-[8px] z-10 | md:left-[40px] lg:top-8 lg:bottom-[216px] text-white lg:text-2xl font-black text-shadow-black text-shadow-lg/50">{indexBigImg + 1} / {amountImage} </h1>
-                <img className="gallery-car__big-img *** aspect-3/2 object-cover w-full | md:h-[500px] rounded-lg  " src={image[indexBigImg]} alt="" />
+                <img className="gallery-car__big-img *** aspect-3/2 object-cover w-full | md:h-[500px] rounded-lg  " src={Imgs[indexBigImg]} alt="" />
                 <div className="gallery-car__container-mini-img --scroll-hide *** flex flex-row justify-start relative overflow-x-scroll snap-x scroll-smooth | py-2 gap-4 |  md:pt-0 lg:gap-8">
-                    {image.map((img, index) =>
+                    {Imgs.map((img, index) =>
                         <img className={`gallery-car__mini-img --btn *** w-[120px] aspect-16/9 md:aspect-16/8 snap-center rounded-lg object-cover | lg:w-[250px] ${indexBigImg === index ? "" : "brightness-60 lg:brightness-40"} hover:brightness-95`} src={img} alt={`${brandName}-${carName}-${index}`} key={`${carName}-${index}`} index={index} onClick={handleOnClickMiniImage} />
                     )}
                 </div>

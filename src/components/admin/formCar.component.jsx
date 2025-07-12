@@ -165,13 +165,12 @@ export default function FormCar({
 
     return (
 
-        <form className={`form-car-${index} *** w-[300px] h-fit  bg-gray-800 *:bg-gray-700 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
+        <form className={`form-car-${index} *** w-[300px] h-fit border border-gray-800 *:bg-gray-700 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
 
             <fieldset className="  grid grid-cols-2 *:not-first:bg-gray-600  gap-4 p-4 *:p-2 *:rounded-lg *:w-full overflow-x-hidden ">
-                {!IsCard && <legend className="">ข้อมูลรถ</legend>}
 
-                <div className="col-span-2 relative border">
-                    <label className=" absolute border text-center top-0 left-0 w-full h-full bg-gray-700/60 border-red-600 cursor-pointer justify-center items-center flex" htmlFor={`input-car-thumbnail-${index}`} hidden={IsCard} >เลือกรูปปก</label>
+                <div className="col-span-2 relative ">
+                    <label className=" absolute text-center top-0 left-0 w-full h-full bg-gray-700/60 cursor-pointer justify-center items-center flex" htmlFor={`input-car-thumbnail-${index}`} hidden={IsCard} >เลือกรูปปก</label>
                     <input className="" id={`input-car-thumbnail-${index}`} name="carThumbnail" type="file" hidden onChange={handleInputThumbnailChange} />
                     <img className={`form-car__thumbnail-${index} *** w-full aspect-16/9 object-cover `} src={thumbnail} alt="" />
                 </div>

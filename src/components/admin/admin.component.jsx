@@ -1,8 +1,5 @@
-import { useLoaderData } from "react-router";
-import FormBrandCar from "./formBrand.component";
-import FormCar from "./formCar.component";
+import { Link, Outlet, useLoaderData } from "react-router";
 import { useEffect } from "react";
-import FormCustomer from "./formCustomer.component";
 
 export default function Admin() {
     const { Brand, Car, Customer } = useLoaderData()
@@ -11,32 +8,17 @@ export default function Admin() {
 
     console.log("repage : ", Car, Brand, Customer)
     return (
-        <div className="max-w-7xl *:flex *:gap-4 *:p-4 border h-[300vh]">
-            <div className="">
-                <div className="">
-                    <FormBrandCar />
-                </div>
-                <div className="admin__container-card-brand *** w-full flex flex-wrap gap-2 justify-center">
-                    {Brand.data.map((item, index) =>
-                        <FormBrandCar data={item} isCard={true} index={index} key={item.id} />
-                    )}
-                </div>
-            </div>
-
-            <div className="">
-                <div className="">
-                    <FormCar />
-                </div>
-                <div className="flex flex-wrap gap-2 w-full ">
-                    {Car.data.map((item) => <FormCar data={item} isCard={true} index={item.id} key={item.id} />)}
-                </div>
-
-            </div>
-            <div className="">
-                <FormCustomer />
-                <div className="">
-                    {Customer.data.map((item) => <FormCustomer data={item} isCard={true} index={item.id} key={item.id} />)}
-                </div>
+        <div className="h-full bg-gray-900 text-white min-h-[100vh] *:not-first:w-7xl justify-center  grid grid-cols-10 gap-4 *:not-first:col-span-8 ">
+            <ul className="flex flex-col border border-gray-800 rounded-lg col-span-2  gap-4 p-4 text-end *:p-4 *:not-first:hover:text-golden-1 *:rounded-lg  " >
+                <span className="text-center text-description-1"> เมนู </span>
+                <Link to={"booking"}>จองรถ</Link>
+                <Link to={"history/booking"}>ประวัติการจอง</Link>
+                <Link to={"car"}>รถ</Link>
+                <Link to={"customer"}>ลูกค้า</Link>
+                <Link to={"ui"}>หน้าบ้าน</Link>
+            </ul>
+            <div className="p-4">
+                <Outlet />
             </div>
         </div>
     )

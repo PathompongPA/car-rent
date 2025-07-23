@@ -38,6 +38,16 @@
 }
 
 @layer utilities {
+
+  input,
+  textarea {
+    @apply p-2 rounded-lg border border-gray-800
+  }
+
+  label {
+    @apply font-bold p-2
+  }
+
   .--btn {
     @apply active:text-golden-1 hover:text-golden-1 hover:cursor-pointer hover:md:scale-[1.1] active:scale-[.9] active:md:scale-[.99] transition-all duration-150 select-none
   }

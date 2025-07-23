@@ -1,8 +1,7 @@
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData } from "react-router";
 import CalendarAdmin from "./calendar.admin.component";
 import { fetchApi } from "../../utility";
 import { useEffect, useState } from "react";
-import dayjs from "dayjs";
 
 export default function FormBooking() {
     let { Car, Customer } = useLoaderData()
@@ -13,32 +12,21 @@ export default function FormBooking() {
     const [step, setStep] = useState(1)
     const [booking, setbooking] = useState(undefined)
     const [newCustomer, setNewCustomer] = useState(undefined)
-    let navigate = useNavigate()
 
     useEffect(() => {
         setCustomerState(Customer)
     }, [Customer, step])
 
-    function resetForm() {
-        document.getElementsByClassName(`form-car-${index}`)[0].reset()
-        document.getElementsByClassName(`form-car__container-image-${index}`)[0].src = null;
-    }
-
-    function recallPage() {
-        navigate(".", { replace: true })
-    }
 
     function formChange() {
         let form = new FormData(document.getElementsByClassName("form-booking")[0])
         let target = Car.data.filter((res) => res.id === form.get("carId"))[0]
-        console.log("form change  ::: ", form.get("checkInDate"))
         setCarTarget(target)
     }
 
     function filterCustomer(e) {
         const searchValue = e.target.value.toLowerCase();
         const filtered = Customer.data.filter((customer) => customer.customerName.includes(searchValue));
-        console.log("fileter : ", filtered)
         setCustomerState({ ...Customer, data: filtered });
     }
 
@@ -50,29 +38,10 @@ export default function FormBooking() {
     async function submitForm(e) {
         e.preventDefault()
         let form = new FormData(e.target)
-        for (const [key, value] of form.entries()) {
-            console.log(key, value)
-        }
 
-        // console.log(await JSON.stringify(await fetchApi("POST", "/api/booking", form, {})))
         const { isSuccess, msg } = await fetchApi("POST", "/api/booking", form, {})
-        alert(msg)
+        !isSuccess && alert(msg)
         isSuccess && location.reload(true)
-
-    }
-
-    async function upsertCustomer() {
-        let form = new FormData(document.getElementsByClassName("form-booking")[0])
-        let customer = new FormData()
-        form.get("customerId") !== "" && customer.append("id", form.get("customerId"))
-        customer.append("customerName", form.get("customerName"))
-        customer.append("customerName", form.get("customerName"),)
-        customer.append("customerLastName", form.get("customerLastName"))
-        customer.append("customerPhone", form.get("customerPhone"))
-        customer.append("customerDriverLicense", form.get("customerDriverLicense"))
-        customer.append("customerIdCard", form.get("customerIdCard"))
-        customer.append("customerFacebook", form.get("customerFacebook"))
-        alert(JSON.stringify(await fetchApi("delete", "/api/customer", form)))
     }
 
     function togglePopUp() {
@@ -132,13 +101,13 @@ export default function FormBooking() {
     }
 
     return (
-        <form className={`form-booking *** grid grid-rows-100`} onChange={formChange} onSubmit={submitForm}>
-            <div className=" row-span-10 text-title-3 text-center justify-center items-center flex " >ระบบ จองรถ</div>
+        <form className={`form-booking *** grid grid-rows-100 border-gray-800 rounded-lg p-4`} onChange={formChange} onSubmit={submitForm}>
+            <h1 className=" pl-4 row-span-10 text-title-3 font-bold items-center flex " >ระบบ จองรถ</h1>
 
-            <div className=" row-span-5 status-bar flex  justify-center items-center gap-[10vw] text-description-3 font-bold ">
-                <div className={`${step !== 1 && "text-gray-500 text-base font-normal"}`}>ชั้นตอนที่ 1 : เลือกรถและวันที่</div>
-                <div className={`${step !== 2 && "text-gray-500 text-base font-normal"}`}>ชั้นตอนที่ 2 : กรอกข้อมูลลูกค้า</div>
-                <div className={`${step !== 3 && "text-gray-500 text-base font-normal"}`}>ชั้นตอนที่ 3 : แนบหลักฐาน</div>
+            <div className=" row-span-5 status-bar flex pl-4  justify-center items-center gap-[10vw] text-description-3 font-bold ">
+                <div className={`${step !== 1 && "text-gray-500 text-base "}`}>ชั้นตอนที่ 1 : เลือกรถและวันที่</div>
+                <div className={`${step !== 2 && "text-gray-500 text-base "}`}>ชั้นตอนที่ 2 : กรอกข้อมูลลูกค้า</div>
+                <div className={`${step !== 3 && "text-gray-500 text-base "}`}>ชั้นตอนที่ 3 : แนบหลักฐาน</div>
             </div>
 
             <div className={` row-span-80  overflow-hidden   ${step !== 1 && "hidden"} gap-4   *:rounded-lg  *:overflow-hidden`}>
@@ -282,6 +251,10 @@ export default function FormBooking() {
                         <div className=""><strong>เบอร์ติดต่อ :</strong>{` ${customerTarget?.customerPhone || newCustomer?.customerPhone}`}</div>
                         <div className=""><strong>วันรับรถ : </strong><span>{`${booking?.checkInDate}`}</span></div>
                         <div className=""><strong>วันคืนรถ : </strong><span>{`${booking?.checkOutDate}`}</span></div>
+                        <div className=" flex  gap-4">
+                            <strong>หมายเหตุ : </strong>
+                            <textarea className="border border-red-800" name="" id="" placeholder="สามารถใส่เวลาหรือข้อจำกัดต่างๆ "></textarea>
+                        </div>
                         {/* <div className=""><strong>รวม : </strong>{customerTarget?.customerPhone || newCustomer?.customerPhone} <strong> วัน</strong></div>
                         <div className=""><strong>ราคา: </strong>{customerTarget?.customerPhone || newCustomer?.customerPhone} <strong> วัน</strong></div> */}
                         <div className=""><strong>{`หลักฐานการโอน : `}</strong></div>

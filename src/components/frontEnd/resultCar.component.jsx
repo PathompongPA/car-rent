@@ -8,18 +8,17 @@ export default function ResultCar() {
     let isHomePage = searchBrand === "all" | searchBrand === null
     let cars = isHomePage ? Car.data : Car.data.filter((element) => element.brand.brandName === searchBrand)
 
-    console.log("car :::", Car)
     return (
         <div className="result-car >> flex flex-col  gap-4 flex-wrap justify-center  | min-w-[150px]  lg:min-h-[300px] w-full lg:gap-4  p-4 | bg-linear-to-b from-white to-blue-2/10  | lg:max-w-7xl md:bg-white md:bg-none snap-start ">
-            <div className="flex flex-wrap justify-center min-h-[50vh] md:min-h-[200px] gap-4">
-                {cars.map(({ carThumbnail, brand, carName, id }, index) =>
-                    <Link to={`/car/?id=${index}`} onClick={() => { window.scrollTo(0, 0) }}
+            <div className="flex flex-wrap justify-center min-h-[50vh] md:min-h-[200px] gap-4 ">
+                {cars?.map(({ carThumbnail, brand, carName, id }, index) =>
+                    <Link to={`/car/?id=${id}`} onClick={() => { window.scrollTo(0, 0) }}
                         className="result-car__card --btn >> flex flex-col items-center |
                                 bg-gray-1/40
                                 md:bg-transparent
                                   text-blue-2
                                    rounded-lg |
-                                   pb-6
+                                   pb-2
                                   w-full
                                   sm:w-[300px]
                                   md:w-[350px]

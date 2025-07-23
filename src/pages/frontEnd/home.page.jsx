@@ -9,7 +9,7 @@ export default function HomePage() {
     }, [location])
 
     return (
-        <div className="home-page *:flex *:items-center *:justify-center flex flex-col justify-center items-center  md:gap-4">
+        <div className="home-page *:flex *:items-center *:justify-center flex flex-col justify-center items-center  ">
             <NavigationBar />
             <Brander />
             <Outlet />

@@ -5,9 +5,8 @@ export default function DescriptionCar() {
     let searchCarId = search.get("id")
     const { Car } = useLoaderData();
     // let car = Car.data.find((element) => element.id === searchCarId)
-    let car = Car.data[searchCarId]
+    let car = Car.data.filter((item) => item.id === searchCarId)[0]
     // .find((element) => element.id === searchCarId)
-    console.log(car)
     return (
         <div className="description-car *** flex flex-col gap-4 font-black text-blue-1 w-full p-4 pb-8 md:max-w-7xl  lg:snap-center">
             <h1 className=" md:text-title-1 text-title-3">รายละเอียด</h1>

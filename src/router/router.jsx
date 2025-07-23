@@ -1,22 +1,24 @@
 import { createHashRouter } from "react-router";
 import { Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, ResultCar, Review } from "../components/frontEnd";
 import { HomePage } from "../pages/frontEnd";
-import { Admin, FormBooking, FormCar, FormCustomer } from "../components/admin";
+import { Admin, FormBooking, FormCar, FormContent, FormCustomer } from "../components/admin";
 import { fetchApi } from "../utility";
-import { CarPage, CustomerPage, HistoryBookingPage } from "../pages/admin";
+import { CarPage, CustomerPage, ErrorPage, HistoryBookingPage, OutOfPage } from "../pages/admin";
 
 async function adminLoader() {
-    const [brandRes, carRes, customer, booking] = await Promise.all([
+    const [brandRes, carRes, customer, booking, content] = await Promise.all([
         fetchApi("GET", "/api/car/brand"),
-        fetchApi("GET", "/api/car/"),
+        fetchApi("GET", "/api/car"),
         fetchApi("GET", "/api/customer/"),
-        fetchApi("GET", "/api/booking?car=e5fae1da-ceec-4121-a158-d6e4a2337d28"),
+        fetchApi("GET", "/api/booking"),
+        fetchApi("GET", "/api/content"),
     ])
     const Brand = await brandRes
     const Car = await carRes
     const Customer = await customer
     const Booking = await booking
-    return { Brand, Car, Customer, Booking }
+    const Content = await content
+    return { Brand, Car, Customer, Booking, Content }
 }
 
 const router = createHashRouter([
@@ -46,7 +48,7 @@ const router = createHashRouter([
             },
             {
                 path: "ui",
-                element: <FormBooking />,
+                element: <FormContent />,
                 loader: adminLoader,
             }
         ],
@@ -55,6 +57,8 @@ const router = createHashRouter([
     {
         path: "/",
         element: <HomePage />,
+        errorElement: <ErrorPage />,
+        loader: adminLoader,
         children: [
             {
                 path: "",
@@ -89,7 +93,7 @@ const router = createHashRouter([
     },
     {
         path: "*",
-        element: <GalleryCar />
+        element: <OutOfPage />
     },
 ])
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { mockup } from "../../mockup";
+import { useLoaderData } from "react-router";
 
 export default function Brander() {
-    const { list } = mockup.component.search.image;
+    let { Content } = useLoaderData();
+    const list = Content.data[9].value;
     let [index, setIndex] = useState(0)
 
     useEffect(() => {
@@ -41,22 +42,22 @@ export default function Brander() {
     }
 
     let isFristImage = index === 0
-    let isOnlyOneImage = list.length === 1
+    let isOnlyOneImage = list?.length === 1
     return (
-        <div id="brander" className="brander ... relative items-start justify-center | w-full gap-4 |  md:max-w-7xl pt-20" >
+        <div className="brander ... relative items-start justify-center | w-full gap-4 |  md:" >
 
             <div className="brander__interface ... flex flex-col justify-center absolute | w-full h-full top-0" >
 
-                <div className={`brander__next-and-pre ... absolute flex | h-fit w-full p-4 || *:absolute *:justify-center *:items-center *:rounded-full *:aspect-1/1 *:font-black  *:w-[10vw] *:md:w-[3vw] *:md:text-xl *:bg-white/30 *:text-black ${isOnlyOneImage & "hidden"}`} >
+                <div className={`brander__next-and-pre ... absolute flex | h-fit w-full p-4 || *:absolute *:justify-center *:items-center *:rounded-full *:aspect-1/1 *:font-black  *:w-[10vw] *:md:w-[3vw] *:md:text-xl *:bg-white/80 *:text-black ${isOnlyOneImage & "hidden"}`} >
                     <div className={`brander__btn-pre-image --btn ... left-4 ${isFristImage ? "hidden" : "flex"}`} onClick={handleScrollPre} > {`<`} </div>
                     <div className={`brander__btn-next-image --btn ... right-4 flex`} onClick={handleScrollNext} > {`>`} </div>
                 </div>
 
-                <div className={`brander__display-dot ... absolute bottom-0 flex flex-row justify-center | h-[2vh] md:h-[5vh] w-full gap-2 lg:gap-4 ${isOnlyOneImage && "hidden"} `} >
-                    {list.map((param, _index) => {
+                <div className={`brander__display-dot ... absolute bottom-0 flex flex-row justify-center | h-[4vh] md:h-[5vh] w-full gap-2 lg:gap-4 ${isOnlyOneImage && "hidden"} `} >
+                    {list?.map((param, _index) => {
                         let isLocation = index === _index
                         return (
-                            <div className={`brander__dot ... h-[1vh] rounded-full  w-[1vh] aspect-1/1 ${isLocation ? "bg-blue-2" : "bg-white/50"} `} key={_index}></div>
+                            <div className={`brander__dot ... h-[1.5vh] rounded-full  w-[1.5vh] md:w-[1vh] md:h-[1vh] aspect-1/1 ${isLocation ? "bg-golden-1" : "bg-white"} `} key={_index}></div>
                         )
                     })}
                 </div>
@@ -64,8 +65,8 @@ export default function Brander() {
             </div >
 
             <div className="brander__slide-image --scroll-hide ... flex flex-row snap-x snap-mandatory overflow-x-scroll md:overflow-x-scroll overflow-y-hidden | w-full ">
-                {list.map((image, _index) =>
-                    <img className="brander__image ... snap-center md:h-[550px] aspect-4/3 md:aspect-21/9 object-cover" src={image} alt="big image" key={image + _index} />
+                {list?.map((image, _index) =>
+                    <img className="brander__image ... snap-center md:h-[400px] md:w-7xl object-cover aspect-16/9 " src={image} alt="big image" key={image + _index} />
                 )}
             </div>
 

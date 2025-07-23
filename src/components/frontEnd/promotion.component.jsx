@@ -6,17 +6,15 @@ export default function Promotion() {
     const { Car } = useLoaderData()
     const [searchParame] = useSearchParams()
     let parameCarId = searchParame.get("id")
-    // const { offers } = Car.data.find((element) => element.id === parameCarId)
-    const { offers } = Car.data[parameCarId]
 
-    console.log(offers)
+    const { offers } = Car.data.filter((item) => item.id === parameCarId)[0]
 
     useEffect(() => {
         setPrices(offers)
     }, [offers])
 
     return (
-        <div className="promotion flex flex-col w-full md:max-w-7xl text-description-1 font-black text-white bg-blue-2  p-4 md:px-4 md:py-8 md:snap-center">
+        <div className="promotion flex flex-col w-full text-description-1 font-black text-white bg-blue-2  p-4 md:px-4 md:py-8 md:snap-center">
             <div className="promotion__title *** border-b-4 pb-8 text-golden-1 text-title-1 text-center">โปรโมชั่น</div>
             <div className="promotion_container-card *** flex flex-row flex-wrap items-center justify-center py-4 gap-x-8 md:py-8 md:gap-16">
                 {prices && prices.map(({ offerAmountDay, offerPrice }, index) =>

@@ -143,7 +143,8 @@ export default function FormCar({
         let body = JSON.stringify({ id: id })
         const { isSuccess, msg } = await fetchApi("delete", "/api/car/", body)
         isSuccess ? alert("บันทึกสำเร็จ") : alert(msg)
-        isSuccess && resetForm() & recallPage()
+        isSuccess && location.reload(true)
+        // & recallPage()
     }
 
     function toggleEdit() {
@@ -165,17 +166,17 @@ export default function FormCar({
 
     return (
 
-        <form className={`form-car-${index} *** w-[300px] h-fit border border-gray-800 *:bg-gray-700 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
+        <form className={`form-car-${index} *** w-[350px] h-fit border border-gray-800 *:bg-gray-900 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
 
-            <fieldset className="  grid grid-cols-2 *:not-first:bg-gray-600  gap-4 p-4 *:p-2 *:rounded-lg *:w-full overflow-x-hidden ">
+            <fieldset className="  grid grid-cols-2 *:not-first:bg-gray-900  gap-4 p-4 *:p-2 *:rounded-lg *:w-full overflow-x-hidden ">
+
+                <input className="form-car__car-id" type="hidden" value={id} name="id" />
 
                 <div className="col-span-2 relative ">
-                    <label className=" absolute text-center top-0 left-0 w-full h-full bg-gray-700/60 cursor-pointer justify-center items-center flex" htmlFor={`input-car-thumbnail-${index}`} hidden={IsCard} >เลือกรูปปก</label>
+                    <label className=" absolute text-center top-0 left-0 w-full h-full bg-gray-800/40 cursor-pointer justify-center items-center flex" htmlFor={`input-car-thumbnail-${index}`} hidden={IsCard} >เลือกรูปปก</label>
                     <input className="" id={`input-car-thumbnail-${index}`} name="carThumbnail" type="file" hidden onChange={handleInputThumbnailChange} />
                     <img className={`form-car__thumbnail-${index} *** w-full aspect-16/9 object-cover `} src={thumbnail} alt="" />
                 </div>
-
-                <input className="form-car__car-id" type="hidden" value={id} name="id" />
 
 
                 <select className={`form-car__select-brand-${index} *:text-white`} name="brandId" defaultValue={brandId} disabled={IsCard}  >
@@ -190,17 +191,16 @@ export default function FormCar({
 
                 <textarea className={`form-car__car-description-${index} *** col-span-2 bg-white`} name="carDescription" placeholder="รายละเอียด" defaultValue={carDescription} readOnly={IsCard}></textarea>
 
-
             </fieldset>
 
             <details className=" w-full ">
                 <summary> รูป</summary>
                 <div className=" col-span-2  w-full relative  group *:group-hover:cursor-pointer overflow-hidden flex flex-col justify-center items-center gap-4 pt-4 h-fit pb-4 ">
-                    <label className={`form-car__label-input-car-image-${index} *** p-4 ${IsCard && "hidden"} bg-gray-500 rounded-lg w-full h-full flex flex-1/2 text-center items-center justify-center`} htmlFor={`input-car-image-${index}`}>คลิกเพื่อเลือกไฟล์ / วางไฟล์ที่นี้</label>
+                    <label className={`form-car__label-input-car-image-${index} *** p-4 ${IsCard && "hidden"} bg-gray-800/40 rounded-lg w-full h-full flex flex-1/2 text-center items-center justify-center`} htmlFor={`input-car-image-${index}`}>คลิกเพื่อเลือกไฟล์ / วางไฟล์ที่นี้</label>
                     <input className={`form-car__input-image-${index} hidden`} type="file" name="carImage" id={`input-car-image-${index}`} multiple onChange={fileChange} />
                     <div className={`form-car__container-image-${index} *** overflow-x-auto h-full gap-4 w-full flex flex-nowrap snap-x snap-mandatory pb-4 `}>
                         {images.map((item, _index) =>
-                            < img className={`form-car__imag-${index}-${_index} w-[200px] aspect-16/9 object-cover bg-gray-500 rounded-lg snap-center`} src={item} alt="" key={item + _index} />
+                            < img className={`form-car__imag-${index}-${_index} w-[200px] aspect-16/9 object-cover bg-gray-800/40 rounded-lg snap-center`} src={item} alt="" key={item + _index} />
                         )}
 
                     </div>
@@ -214,15 +214,15 @@ export default function FormCar({
                         return (
                             <div className={`form-car__container-tair-${index}  grid grid-cols-7  gap-1 *:rounded-lg *:py-2 items-center *:text-center`} key={`${index}-${offer.id}`}>
                                 <input type="hidden" defaultValue={offer.id} />
-                                <input className={`form-car__tair-${index}-day-${_index} *** col-span-2 bg-gray-600`} type="number" placeholder="จำนวน" name="day[]" readOnly={IsCard} defaultValue={offer.offerAmountDay} min={0} />
+                                <input className={`form-car__tair-${index}-day-${_index} *** col-span-2 `} type="number" placeholder="จำนวน" name="day[]" readOnly={IsCard} defaultValue={offer.offerAmountDay} min={0} />
                                 <label >วัน</label>
-                                <input className={`form-car__tair-${index}-price-${_index} *** col-span-2 bg-gray-600`} type="number" placeholder="ราคา" name="price[]" readOnly={IsCard} defaultValue={offer.offerPrice} min={0} />
+                                <input className={`form-car__tair-${index}-price-${_index} *** col-span-2 `} type="number" placeholder="ราคา" name="price[]" readOnly={IsCard} defaultValue={offer.offerPrice} min={0} />
                                 <label >บาท</label>
                                 <button className={`form-car__btn-delete-tair-${index} --btn col-span-1 bg-red-800 text-white p-2 rounded-lg hover:bg-red-600 btn-delete-tair ${IsCard && "hidden"}`} data-index={_index} onClick={handleBtnDeleteTair}>ลบ</button>
                             </div>
                         )
                     })}
-                    <button className={` hover:text-golden-1 cursor-pointer bg-gray-600 p-2 rounded-lg w-full ${IsCard && "hidden"}`} onClick={addNewTair}>เพิ่มระดับราคา</button>
+                    <button className={` hover:text-golden-1 cursor-pointer bg-gray-800 p-2 rounded-lg w-full ${IsCard && "hidden"}`} onClick={addNewTair}>เพิ่มระดับราคา</button>
                 </div>
             </details>
 

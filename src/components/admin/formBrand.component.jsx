@@ -35,6 +35,7 @@ export default function FormBrandCar({ index = "", data = { id: null, brandImg: 
             isCard ? isSuccess ? alert(`แก้ไขสำเร็จ`) : alert(`แก้ไขผิดพลาด <${msg}>`) : isSuccess ? alert(`บันทึกสำเร็จ`) : alert(`บันทึกผิดพลาด <${msg}>`)
             !isCard & isSuccess && resetForm() & recallPage()
             isCard & isSuccess && handleBtnEdit() & recallPage()
+            console.log(msg)
         }
     }
 
@@ -75,16 +76,16 @@ export default function FormBrandCar({ index = "", data = { id: null, brandImg: 
     }
 
     return (
-        <form className={`form-${index} *** flex flex-col w-[200px] bg-gray-800 p-4 gap-2 rounded-lg snap-center `} key={index} onSubmit={(event) => { event.preventDefault() }} >
+        <form className={`form-${index} *** flex flex-col w-[200px] border border-gray-800 p-4 gap-2 rounded-lg snap-center `} key={index} onSubmit={(event) => { event.preventDefault() }} >
 
             <input type="hidden" value={isCard ? id : undefined} name="id" />
 
             <input className={`form__brand-name-${index} *** text-white text-center rounded-lg`} type="text" placeholder="กรุณากรอกชื่อ Brand" defaultValue={name} readOnly={isCard} name="brandName" />
 
             <div className={`form__container-input-image-${index} *** relative flex flex-col justify-center items-center aspect-1/1 w-full `}>
-                <label className={`form__label-image-${index} *** ${isCard && "invisible"} cursor-pointer absolute w-full aspect-1/1 text-center rounded-lg flex justify-center items-center bg-gray-700/70 `} htmlFor={`input-brand-image-${index}`}>{isCard ? "กดที่รูปเพื่อเปลี่ยน" : "กดเพื่อเลือกรูป"}</label>
+                <label className={`form__label-image-${index} *** ${isCard && "invisible"} cursor-pointer absolute w-full aspect-1/1 text-center rounded-lg flex justify-center items-center bg-gray-800/40 `} htmlFor={`input-brand-image-${index}`}>{isCard ? "กดที่รูปเพื่อเปลี่ยน" : "กดเพื่อเลือกรูป"}</label>
                 <input className={`form__input-image-${index} *** hidden ${isCard && "invisible"} absolute w-[80%] aspect-1/1 rounded-lg`} type="file" id={`input-brand-image-${index}`} placeholder="เลือกรูป" onChange={handleInputImgChange} name="brandImg" />
-                <img className={`form__display-img-${index} ***  aspect-1/1 object-cover bg-gray-700 rounded-lg `} src={logo} alt="" />
+                <img className={`form__display-img-${index} ***  aspect-1/1 object-cover bg-gray-800/40 rounded-lg `} src={logo} alt="" />
             </div>
 
             <div className={`form__container-btn-${index} *** flex gap-4 *:rounded-lg *:p-2 `}>

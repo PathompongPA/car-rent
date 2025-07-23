@@ -120,8 +120,8 @@ export default function FormCustomer
     }
 
     return (
-        <form className={`form-customer-${index} *** *:bg-gray-700 *:p-2 *:rounded-lg rounded-lg bg-gray-800 p-4`}>
-            <fieldset className=" grid grid-cols-3 *:not-first:bg-gray-600  *:p-2 *:rounded-lg gap-2">
+        <form className={`form-customer-${index} *** *:bg-gray-900 *:p-2 *:rounded-lg rounded-lg bg-gray-900 p-4 border border-gray-800`}>
+            <fieldset className=" grid grid-cols-3 *:not-first:bg-gray-900  *:p-2 *:rounded-lg gap-2">
                 {/* <legend>ข้อมูลลูกค้า </legend> */}
 
                 <input className={`form-customer__id-${index}`} type="hidden" name="id" defaultValue={id} />
@@ -135,21 +135,21 @@ export default function FormCustomer
                         <summary>บัตรประชาชน</summary>
                         <label className={`form-customer__lable-id-card-${index} *** cursor-pointer absolute w-[400px] aspect-16/9 flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerIdCard-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
                         <input className={`form-customer__input-id-card-${index}`} type="file" name="customerIdCard" id={`customerIdCard-${index}`} hidden onChange={changeIdCard} />
-                        <img className={`form-customer__img-id-card-${index} *** w-[400px] aspect-16/9 bg-gray-400 rounded-lg object-cover `} src={IdCard} alt="" />
+                        <img className={`form-customer__img-id-card-${index} *** w-[400px] aspect-16/9 bg-gray-800 rounded-lg object-cover `} src={IdCard} alt="" />
                     </details>
 
                     <details className="pl-4 relative col-span-3" open={!IsCard}  >
                         <summary>ใบขับขี่</summary>
                         <label className={`form-customer__lable-driver-license-${index} *** cursor-pointer absolute w-[400px] aspect-16/9 flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerDriverLicense-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
                         <input className={`form-customer__input-driver-license-${index}`} type="file" name="customerDriverLicense" id={`customerDriverLicense-${index}`} hidden onChange={changeDriverLicense} />
-                        <img className={`form-customer__img-dirver-license-${index} *** w-[400px] aspect-16/9 bg-gray-400 rounded-lg object-cover `} src={driverLicense} alt="" />
+                        <img className={`form-customer__img-dirver-license-${index} *** w-[400px] aspect-16/9 bg-gray-800 rounded-lg object-cover `} src={driverLicense} alt="" />
                     </details>
 
                     <details className="pl-4 relative col-span-3" open={!IsCard}>
                         <summary>facebook</summary>
                         <label className={`form-customer__lable-facebook-${index} *** cursor-pointer absolute w-[400px] aspect-16/9 flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerFacebook-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
                         <input className={`form-customer__input-facebookk-${index}`} type="file" name="customerFacebook" id={`customerFacebook-${index}`} hidden onChange={changeFacebook} />
-                        <img className={`form-customer__img-facebook-${index} *** w-[400px] aspect-16/9 bg-gray-400 rounded-lg object-cover `} src={facebook} alt="" />
+                        <img className={`form-customer__img-facebook-${index} *** w-[400px] aspect-16/9 bg-gray-800 rounded-lg object-cover `} src={facebook} alt="" />
                     </details>
                 </details>
 

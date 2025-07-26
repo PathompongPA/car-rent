@@ -149,25 +149,29 @@ export default function FormBooking() {
 
             <div className={`row-span-80 grid grid-cols-2  p-2 gap-4 *:rounded-lg ${step !== 2 && "hidden"} scrollbar-none `}>
 
-                <div className="flex flex-col gap-4 overflow-hidden ">
-                    <div className="p-2 w-full text-description-2">ลูกค้าเดิม</div>
-                    <div className="flex flex-col   bg-gray-900 gap-2 p-2 ">
-                        <div className="grid grid-cols-12 gap-2 *:rounded-lg  *:p-2 bg-gray-900 p-2 py-4 rounded-lg">
+                <div className="flex flex-col gap-2 overflow-hidden border border-gray-800 p-4 h-full ">
+                    <div className="w-full text-description-2"> รายชื่อลูกค้า</div>
+                    <div className="flex flex-col  bg-gray-900 gap-4 h-full ">
+                        <div className="grid grid-cols-12 gap-2 *:rounded-lg  *:p-2  bg-gray-900 rounded-lg">
                             <input className="col-span-10 border border-gray-800 " type="text" placeholder="ค้นหาลูกค้าด้วย ..." onChange={filterCustomer} />
                             <button className="col-span-2 border border-gray-800 ">ค้นหา</button>
                         </div>
-                        <div className="flex flex-col h-[50vh] gap-2 overflow-y-scroll overflow-x-hidden  px-2  ">
-                            {customerState?.data.map((res) => {
-                                const { id, customerName, customerLastName, customerPhone, customerIdCard, customerDriverLicense, customerFacebook } = res;
-                                return (
-                                    <div className=" *:p-2 *:rounded-lg border border-gray-800 hover:bg-gray-800 rounded-lg gap-2 grid grid-cols-13 items-center p-2 *:not-[.detail]:text-center *:not-[datil]:" key={id} >
-                                        <div className=" col-span-1 ">คุณ</div>
-                                        <div className=" col-span-3 ">{`${customerName}`}</div>
-                                        <div className=" col-span-3 ">{customerLastName}</div>
-                                        <div className=" col-span-3 ">{`เบอร์ติดต่อ`}</div>
-                                        <div className=" col-span-3 ">{`${customerPhone}`}</div>
+                        <div className="flex flex-col h-[55vh] overflow-hidden border-gray-800  gap-2 rounded-lg  ">
+                            <div className="grid grid-cols-4 *:text-center border border-gray-800 py-4 rounded-lg ">
+                                <span>ชื่อ</span>
+                                <span>นามสกุล</span>
+                                <span>เบอร์ติดต่อ</span>
+                            </div>
+                            <div className="h-full overflow-y-auto gap-2 *:not-even:bg-gray-800">
+                                {customerState?.data.map((res) => {
+                                    const { id, customerName, customerLastName, customerPhone } = res;
+                                    return (
+                                        <div className=" hover:bg-gray-700 rounded-lg grid grid-cols-4 p-2 items-center *:text-center " key={id} >
+                                            <div className="">{`${customerName}`}</div>
+                                            <div className="">{customerLastName}</div>
+                                            <div className="">{`${customerPhone}`}</div>
 
-                                        <details className="col-span-full detail ">
+                                            {/* <details className="col-span-full detail ">
                                             <summary >บัตรประชาชน</summary>
                                             <img src={customerIdCard} alt="" />
                                         </details>
@@ -179,18 +183,19 @@ export default function FormBooking() {
                                         <details className="col-span-full detail ">
                                             <summary>หน้าโปรไฟล์เฟสบุ๊ค</summary>
                                             <img src={customerFacebook} alt="" />
-                                        </details>
-                                        <button className=" col-span-full --btn bg-lime-800 " type="button" onClick={() => { setCustomerTarget(res) }}>เลือก</button>
-                                    </div>
-                                )
-                            })}
+                                        </details> */}
+                                            <button className="p-1 rounded-lg cursor-pointer hover:text-golden-1 bg-lime-800 " type="button" onClick={() => { setCustomerTarget(res) }}>เลือก</button>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className=" flex flex-col  gap-2 overflow-hidden ">
-                    <div className=" p-4 px-2 text-description-2">ข้อมูลใหม่</div>
-                    <div className=" grid grid-cols-12 *:not-first:not-[button]:col-span-4 *:border-gray-800 *:border  pt-4 gap-2 *:rounded-lg p-2 *:p-2 *:flex *:flex-col *:justify-center *:gap-2 ">
+                <div className=" flex flex-col p-4  gap-2 overflow-hidden border border-gray-800 ">
+                    <div className="  text-description-2">เพิ่มข้อมูลูกค้าใหม่</div>
+                    <div className=" grid grid-cols-12 *:not-first:not-[button]:col-span-4 *:border-gray-800 *:border  gap-2 *:rounded-lg  *:p-2 *:flex *:flex-col *:justify-center *:gap-2 ">
                         <input type="text" name="customerId" id="" hidden defaultValue={customerTarget?.id} />
                         <div className="*:p-2 *:rounded-lg">
                             <label className="text-description-3" htmlFor="">ชื่อ</label>
@@ -205,7 +210,7 @@ export default function FormBooking() {
                             <input className="bg-gray-900 w-full border border-gray-800" type="text" name="customerPhone" placeholder="เบอร์ติดต่อ" defaultValue={customerTarget ? customerTarget.customerPhone : ""} />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-2 overflow-y-scroll h-[40vh] p-2 snap-y *:snap-center snap-mandatory *:flex *:items-center *:justify-center *:relative ">
+                    <div className="flex flex-col gap-2 overflow-y-scroll h-[40vh]  snap-y *:snap-center snap-mandatory *:flex *:items-center *:justify-center *:relative ">
                         <div className="">
                             <label className=" absolute top-0 left-0 z-10 bg-gray-900/80 cursor-pointer  border border-gray-800 w-full h-full flex justify-center items-center " htmlFor="input-id-card">{`คลิกเพื่อแก้ไขรูป \n รูปบัตรประชาชน`}</label>
                             <input id="input-id-card" name="customerIdCard" type="file" hidden onChange={fileChage} />

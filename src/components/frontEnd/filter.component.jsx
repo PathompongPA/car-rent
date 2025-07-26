@@ -8,23 +8,28 @@ export default function Filter() {
         <div
             id="booking"
             className=" search-car__filter ...  
-                        flex
-                        flex-col
-                        items-center
-                        bg-gray-1/40
-                        w-full
-                        pt-2
-                        px-4
-                        pb-6
-                        lg:w-fit
-                        lg:p-4
-                        lg:pr-10
-                        xl:px-16
-                        lg:gap-4
-                        lg:rounded-lg
-                        lg:flex-row
-                        lg:bg-gradient-to-t md:from-gray-1 md:to-white 
-                        lg:max-w-7xl
+            border
+            xl:m-4
+            x:mx-8
+            *:border
+            overflow-hidden
+            flex
+            flex-col
+            items-center
+            bg-gray-1/40
+            w-full
+            pt-2
+            px-4
+            pb-6
+            lg:w-fit
+            lg:p-4
+            lg:pr-10
+            xl:px-16
+            lg:gap-4
+            lg:rounded-lg
+            lg:flex-row
+            lg:bg-gradient-to-t md:from-gray-1 md:to-white 
+            xl:max-w-7xl
                         "
         >
 
@@ -48,7 +53,7 @@ export default function Filter() {
                 lg:flex-nowrap
                 lg:h-fit
                 md:p-4
-                xl:overflow-visible
+                xl:overflow-x-scroll
                 lg:gap-8
                             "
             >

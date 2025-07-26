@@ -23,11 +23,11 @@ export default function FormContent() {
         isSuccess && location.reload(true)
     }
 
-    console.log("content : ", Content)
+    // console.log("content : ", Content)
     return (
         <form className="form-content *** flex flex-col gap-4 pb-20 w-full">
 
-            <button className=" fixed top-[25px] right-[100px] border border-gray-800 p-4 rounded-lg hover:bg-gray-800 cursor-pointer active:bg-gray-900" type="button" onClick={save}>บันทึก</button>
+            <button className=" z-50 bg-gray-800 fixed top-[25px] right-[100px] border border-gray-800 p-4 rounded-lg hover:bg-gray-800 cursor-pointer active:bg-gray-900" type="button" onClick={save}>บันทึก</button>
 
             <div className=" text-title-3 font-bold bg-gray-900 ">
                 <h1 className=" p-4 rounded-lg ">แก้ไขหน้าเว็บ</h1>
@@ -53,7 +53,7 @@ export default function FormContent() {
                     return (
                         <div className=" flex gap-2 border border-gray-800 p-2" key={text + indexTitleNavbar}>
                             <label htmlFor="">{`เมนูนำทางที่ ${indexTitleNavbar + 1}`}</label>
-                            <input type="text" name="" id="" defaultValue={text} placeholder={`เมนูนำทางที่ ${indexTitleNavbar}`} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[6].value[indexTitleNavbar].text = e.target.value; return newState; }) }} />
+                            <input type="text" name="" defaultValue={text} placeholder={`เมนูนำทางที่ ${indexTitleNavbar}`} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[6].value[indexTitleNavbar].text = e.target.value; return newState; }) }} />
                         </div>
                     )
                 })}
@@ -87,7 +87,7 @@ export default function FormContent() {
                         </div>
                         <div className=" container-image-view-board h-full flex p-4 overflow-auto  gap-4 snap-x snap-mandatory"  >
                             {Content[9]?.value.map((item, indexImage) =>
-                                <div className="aspect-21/9 w-full bg-gray-900 relative snap-center ">
+                                <div className="aspect-21/9 w-full bg-gray-900 relative snap-center " key={indexImage + item}>
                                     <img className=" w-full h-full   object-cover snap-center bg-gray-800  " src={item} alt={item} key={item + indexImage} />
                                     <button className="px-2 rounded-full  bg-red-800 absolute right-1 top-1 cursor-pointer hover:text-golden-1 hover:bg-red-900" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[9].value.splice(indexImage, 1); return newState }) }} >ลบ</button>
                                 </div>
@@ -102,7 +102,7 @@ export default function FormContent() {
                 <h1 className="text-description-1 font-bold">ขั้นตอนการจอง</h1>
                 <div className="border p-4 flex gap-2 border-gray-800 rounded-lg">
                     <label className="" htmlFor="">หัวข้อ</label>
-                    <input className="" type="text" name="" id="" defaultValue={Content[4]?.value.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[4].value.text = e.target.value; return newState }) }} />
+                    <input className="" type="text" name="" defaultValue={Content[4]?.value.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[4].value.text = e.target.value; return newState }) }} />
                 </div>
                 <div className="flex flex-col gap-4">
                     {Content[3]?.value.map(({ title, detail }, indexCard) => {
@@ -111,7 +111,7 @@ export default function FormContent() {
                                 <div className=" flex justify-between items-center">
                                     <div className="flex gap-2 items-center">
                                         <label className="" htmlFor="">หัวข้อขั้นตอนที่ {indexCard + 1}</label>
-                                        <input type="text" name="" id="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].title = e.target.value; return newState }) }} />
+                                        <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].title = e.target.value; return newState }) }} />
                                     </div>
                                 </div>
                                 <div className=" flex flex-col gap-4">
@@ -119,7 +119,7 @@ export default function FormContent() {
                                         return (
                                             <div className=" flex gap-4" key={item + indexDetail}>
                                                 <label htmlFor="">รายละเอียด {indexDetail + 1}</label>
-                                                <input type="text" name="" id="" defaultValue={item} key={item + indexDetail} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].detail[indexDetail] = e.target.value; return newState; }) }} />
+                                                <input type="text" name="" defaultValue={item} key={item + indexDetail} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].detail[indexDetail] = e.target.value; return newState; }) }} />
                                                 <button className="p-2 bg-red-800 cursor-pointer hover:text-golden-1 rounded-lg" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[3]?.value[indexCard].detail.splice(indexDetail, 1); return newState }) }}>ลบ</button>
                                             </div>)
                                     })}
@@ -135,14 +135,14 @@ export default function FormContent() {
                 <h1 className="text-description-1 font-bold ">ช่องทางการติดต่อ</h1>
                 <div className="border border-gray-800 p-4 flex gap-2">
                     <label htmlFor="">หัวข้อ</label>
-                    <input className="" type="text" name="" id="" defaultValue={Content[1]?.value[0]?.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[1].value[0].text = e.target.value; return newState }) }} />
+                    <input className="" type="text" name="" defaultValue={Content[1]?.value[0]?.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[1].value[0].text = e.target.value; return newState }) }} />
                 </div>
                 {Content[0]?.value?.map(({ list, title }, indexCard) =>
                     <div className=" flex flex-col gap-4 p-4 justify-start " key={title + indexCard}>
                         <div className=" flex justify-between">
                             <div className="flex gap-2 items-center ">
                                 <label htmlFor="">ช่องทางที่ {indexCard + 1}</label>
-                                <input type="text" name="" id="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].title = e.target.value; return newState }) }} />
+                                <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].title = e.target.value; return newState }) }} />
                             </div>
                             <button className="text-end bg-red-800 p-2 rounded-lg cursor-pointer hover:text-golden-1 hover:bg-red-900" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[0].value.splice(indexCard, 1); return newState }) }}>X</button>
                         </div>
@@ -150,9 +150,9 @@ export default function FormContent() {
                             {list?.map(({ title, link }, indexSubCard) =>
                                 <div className=" flex gap-2 items-center *:not-[label,button]:flex-1/2" key={title + indexSubCard}>
                                     <label htmlFor="">ชื่อ</label>
-                                    <input type="text" name="" id="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].title = e.target.value; return newState }) }} />
+                                    <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].title = e.target.value; return newState }) }} />
                                     <label htmlFor="">link</label>
-                                    <input type="text" name="" id="" defaultValue={link} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].link = e.target.value; return newState }) }} />
+                                    <input type="text" name="" defaultValue={link} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].link = e.target.value; return newState }) }} />
                                     <button className="rounded-lg  bg-red-800 cursor-pointer hover:text-golden-1   p-2" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list?.splice(indexSubCard, 1); return newState }) }}>ลบ</button>
                                 </div>
                             )}</div>
@@ -167,15 +167,15 @@ export default function FormContent() {
                 <h1 className="font-bold text-description-1">Q & A</h1>
                 <div className=" flex border p-2 gap-4 border-gray-800 rounded-lg">
                     <label className="font-bold" htmlFor="">หัวข้อ</label>
-                    <input className="" type="text" name="" id="" defaultValue={Content[8]?.value.text} />
+                    <input className="" type="text" name="" defaultValue={Content[8]?.value.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[8].value.text = e.target.value; return newState }) }} />
                 </div>
                 {Content[7]?.value.map(({ answer, question }, indexCardQa) => {
                     return (
                         <div className=" border flex gap-2 *:not-[label,button]:flex-1/4 border-gray-800 rounded-lg p-2 " key={answer + question + indexCardQa}>
                             <label htmlFor="">คำถาม</label>
-                            <textarea type="text" name="" id="" defaultValue={question} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[7].value[indexCardQa].question = e.target.value; return newState }) }} />
+                            <textarea type="text" name="" defaultValue={question} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[7].value[indexCardQa].question = e.target.value; return newState }) }} />
                             <label htmlFor="">คำตอบ</label>
-                            <textarea type="text" name="" id="" defaultValue={answer} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[7].value[indexCardQa].answer = e.target.value; return newState }) }} />
+                            <textarea type="text" name="" defaultValue={answer} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[7].value[indexCardQa].answer = e.target.value; return newState }) }} />
                             <button className=" h-fit p-2 px-4 bg-red-800 rounded-lg cursor-pointer hover:text-golden-1 " type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[7].value.splice(indexCardQa, 1); return newState }) }}>ลบ</button>
                         </div>
                     )
@@ -188,7 +188,7 @@ export default function FormContent() {
                 <h1 className="text-description-1 font-bold" htmlFor="">ที่อยู่</h1>
                 <div className="border border-gray-800 rounded-lg p-4 justify-start flex flex-col">
                     <label htmlFor="">รายละเอียดที่อยู่</label>
-                    <textarea type="text" name="" id="" defaultValue={Content[2]?.value.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[2].value.text = e.target.value; return newState; }) }} />
+                    <textarea type="text" name="" defaultValue={Content[2]?.value.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[2].value.text = e.target.value; return newState; }) }} />
                 </div>
             </div>
 

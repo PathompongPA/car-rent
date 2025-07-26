@@ -2,6 +2,7 @@ import CarPage from "./car.page";
 import CustomerPage from "./customer.page";
 import ErrorPage from "./error.page";
 import HistoryBookingPage from "./historyBooking.page";
+import LoginPage from "./login.page";
 import OutOfPage from "./out.page";
 
 export {
@@ -9,5 +10,6 @@ export {
     CustomerPage,
     HistoryBookingPage,
     ErrorPage,
-    OutOfPage
+    OutOfPage,
+    LoginPage
 }

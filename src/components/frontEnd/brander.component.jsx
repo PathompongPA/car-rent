@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router";
 
 export default function Brander() {
     let { Content } = useLoaderData();
-    const list = Content.data[9].value;
+    const list = Content?.data.filter(item => item.id === "viewBoard.image")[0].value
     let [index, setIndex] = useState(0)
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export default function Brander() {
     let isFristImage = index === 0
     let isOnlyOneImage = list?.length === 1
     return (
-        <div className="brander ... relative items-start justify-center | w-full gap-4 |  md:" >
+        <div className="brander ... relative items-start justify-center | w-full gap-4 | pt-16 xl:pt-0  md:" >
 
             <div className="brander__interface ... flex flex-col justify-center absolute | w-full h-full top-0" >
 

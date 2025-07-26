@@ -33,7 +33,7 @@ export default function HistoryBookingPage() {
                             <span>{dayjs(checkOutDate).format("DD/MM/YYYY")}</span>
                             <span >{"test"} </span>
                             <span>{dayjs(checkOutDate).diff(dayjs(checkInDate), "day") + 1}</span>
-                            <span >{car.carName} </span>
+                            <span >{car?.carName} </span>
                             <span>{customer.customerName}</span>
                             <span>{customer.customerLastName}</span>
                             <span>{customer.customerPhone}</span>

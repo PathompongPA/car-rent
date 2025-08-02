@@ -8,10 +8,9 @@ export default function Filter() {
         <div
             id="booking"
             className=" search-car__filter ...  
-            border
+            min-w-[50%]
             xl:m-4
             x:mx-8
-            *:border
             overflow-hidden
             flex
             flex-col

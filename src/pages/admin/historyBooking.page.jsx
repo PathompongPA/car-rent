@@ -11,18 +11,27 @@ export default function HistoryBookingPage() {
         customerName: "",
         checkIn: "",
         checkOut: "",
+        bookingSart: "",
+        bookingEnd: ""
     })
+
     let filterData = useMemo(() => {
-        return Booking?.data.filter((item) => {
+        let data = Booking?.data.filter((item) => {
             let matchCustomerName = filter.customerName === "" || item.customer.customerName.includes(filter.customerName)
             let matchCarId = filter.carId === "" || item.car.id.includes(filter.carId)
             let matchCheckIn = filter.checkIn === "" || item.checkInDate.includes(filter.checkIn)
             let matchCheckOut = filter.checkOut === "" || item.checkOutDate.includes(filter.checkOut)
-            return matchCustomerName && matchCarId && matchCheckIn && matchCheckOut
+            let matchBookingSTart = filter.bookingSart === "" || dayjs(item.createdAt).isAfter(dayjs(filter.bookingSart))
+            let matchBookingEnd = filter.bookingEnd === "" || dayjs(item.createdAt).isBefore(dayjs(filter.bookingEnd))
+            return matchCustomerName && matchCarId && matchCheckIn && matchCheckOut && matchBookingSTart && matchBookingEnd
+        })
+        return data.sort((a, b) => {
+            let now = dayjs(a["createdAt"])
+            let next = dayjs(b["createdAt"])
+            console.log(a["createdAt"], b["createdAt"])
+            return now.isAfter(next) ? 1 : -1
         })
     }, [filter]);
-
-    console.log(filter)
 
     function filterCarId(e) {
         const searchValue = e.target.value.toLowerCase();
@@ -44,9 +53,14 @@ export default function HistoryBookingPage() {
         setFilter(state => ({ ...state, checkOut: searchValue }))
     }
 
-    function filterByPeriod(e) {
+    function filterByBookingStart(e) {
         const searchValue = e.target.value.toLowerCase();
-        setFilter(state => ({ ...state, checkOut: searchValue }))
+        setFilter(state => ({ ...state, bookingSart: dayjs(searchValue).add(-1, "day").format("YYYY-MM-DD") }))
+    }
+
+    function filterByBookingEnd(e) {
+        const searchValue = e.target.value.toLowerCase();
+        setFilter(state => ({ ...state, bookingEnd: dayjs(searchValue).add(1, "day").format("YYYY-MM-DD") }))
     }
 
     async function deleteBooking(e) {
@@ -72,7 +86,7 @@ export default function HistoryBookingPage() {
         link.click();
         document.body.removeChild(link);
     };
-    console.log("booking : ", Booking)
+    // console.log("booking : ", Booking)
 
     return (
         <div className="flex flex-col md:gap-4 w-full h-full p-4 pt-20 ">
@@ -99,16 +113,16 @@ export default function HistoryBookingPage() {
                     <label htmlFor="">วันที่ทำการจอง</label>
                     <div className=" *:not-[label]:w-[120px] *:not-[label]:p-0 flex justify-between gap-0">
                         <label htmlFor="">วันที่</label>
-                        <input type="date" name="" id="" />
+                        <input type="date" name="" id="" onChange={(e) => { filterByBookingStart(e) }} />
                         <label htmlFor="">ถึง</label>
-                        <input type="date" name="" id="" />
+                        <input type="date" min={dayjs(filter.bookingSart).add(1, "day").format("YYYY-MM-DD")} name="" id="" onChange={(e) => { filterByBookingEnd(e) }} />
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col gap-2 *:rounded-lg *:border-gray-800 overflow-x-auto *:w-[300vw] *:xl:w-full h-[40vh] xl:h-full pt-8 md:pt-0">
+            <div className="flex flex-col gap-2 *:rounded-lg *:border-gray-800 overflow-x-auto *:w-[400vw] *:xl:w-full h-[40vh] xl:h-full pt-8 md:pt-0">
                 <div className=" grid grid-cols-12 border md:py-4 *:font-bold *:text-center justify-center items-center bg-gray-700 ">
                     <span >จอง</span>
-                    <span >วันรับรถ </span>
+                    <span  >วันรับรถ </span>
                     <span > วันคืนรถ </span>
                     <span className="col-span-2"> หมายเหตุ</span>
                     <span >จำนวนวัน</span>
@@ -122,9 +136,9 @@ export default function HistoryBookingPage() {
                     <span >หลักฐานการโอน</span>
                 </div>
                 <div className=" overflow-y-auto *:not-even:bg-gray-800">
-                    {filterData?.map(({ createAt, checkInDate, checkOutDate, customer, car, id, note, slip }, index) =>
+                    {filterData?.map(({ createdAt, checkInDate, checkOutDate, customer, car, id, note, slip }, index) =>
                         <div className=" grid grid-cols-12 border border-gray-800 md:py-4 justify-center items-center *:text-center hover:bg-gray-500" key={id}>
-                            <span>{dayjs(createAt).format("DD/MM/YYYY")}</span>
+                            <span>{dayjs(createdAt).format("H:mm - DD/MM/YYYY")}</span>
                             <span>{dayjs(checkInDate).format("DD/MM/YYYY")}</span>
                             <span>{dayjs(checkOutDate).format("DD/MM/YYYY")}</span>
                             <span className="col-span-2" >{note}</span>
@@ -133,9 +147,9 @@ export default function HistoryBookingPage() {
                             <span>{customer.customerName}</span>
                             <span>{customer.customerLastName}</span>
                             <span>{customer.customerPhone}</span>
-                            <button className=" cursor-pointer " type="button" onClick={(e) => { e.target.parentNode.children[10].classList.toggle("hidden") }}  >ดูรูป</button>
+                            <button className=" cursor-pointer " type="button" onClick={() => { document.getElementsByClassName(`image-slip-${index}`)[0].classList.toggle("hidden") }}  >ดูรูป</button>
                             <div className={`image-slip-${index} --- fixed top-0 left-0 h-[100vh] w-[100vw] cursor-pointer bg-gray-900/80 hidden flex justify-center items-center`} onClick={() => { document.getElementsByClassName(`image-slip-${index}`)[0].classList.toggle("hidden") }} >
-                                <img className=" h-[80%] select-none " id={id} src={slip} alt="" onClick={() => { console.log("click"); document.getElementsByClassName(`image-slip-${index}`)[0].classList.toggle("hidden") }} />
+                                <img className=" h-[80%] select-none " id={id} src={slip} alt="" onClick={() => { document.getElementsByClassName(`image-slip-${index}`)[0].classList.toggle("hidden") }} />
                             </div>
                             <button className=" bg-red-600 w-fit h-fit p-4 py-2 rounded-lg hover:text-golden-1 cursor-pointer" type="button" onClick={() => { deleteBooking(id) }}>ลบ</button>
                         </div>

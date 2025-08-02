@@ -6,7 +6,6 @@ export default function NavbarAdmin() {
         location.assign("/#/224");
     }
 
-    console.log(decodeURIComponent(location.hash.substring(1)).split("/")[2])
     return (
         <ul className=" fixed flex flex-col  md:col-span-2 gap-4 text-end *:p-4 w-full bg-gray-900 z-50 " >
             <span className="text-description-1 font-bold text-end border-b-4 border-gray-800 cursor-pointer " onClick={() => { document.getElementsByClassName("navbar-admin")[0].classList.toggle("hidden") }}>{decodeURIComponent(location.hash.substring(1)).split("/")[2] === undefined ? "ประวัติการจอง" : decodeURIComponent(location.hash.substring(1)).split("/")[2]}</span>

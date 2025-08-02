@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData } from "react-router";
 import { fetchApi } from "../../utility";
 import { useEffect, useState } from "react";
 
@@ -23,7 +23,7 @@ export default function FormCar({
 
     const { id, carName, carDescription, brandId, Imgs, offers, carThumbnail } = data;
     const { Brand } = useLoaderData();
-    let navigate = useNavigate()
+    // let navigate = useNavigate()
 
     const [images, setImages] = useState(Imgs)
     const [stateOffer, setOffers] = useState(offers)
@@ -34,14 +34,14 @@ export default function FormCar({
     }, [IsCard])
 
 
-    function resetForm() {
-        document.getElementsByClassName(`form-car-${index}`)[0].reset()
-        document.getElementsByClassName(`form-car__container-image-${index}`)[0].src = null;
-    }
+    // function resetForm() {
+    //     document.getElementsByClassName(`form-car-${index}`)[0].reset()
+    //     document.getElementsByClassName(`form-car__container-image-${index}`)[0].src = null;
+    // }
 
-    function recallPage() {
-        navigate(".", { replace: true })
-    }
+    // function recallPage() {
+    //     navigate(".", { replace: true })
+    // }
 
     function getForm(className) {
         let form = new FormData(document.getElementsByClassName(className)[0])

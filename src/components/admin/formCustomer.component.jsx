@@ -100,7 +100,8 @@ export default function FormCustomer
             let { isSuccess, msg } = await fetchApi(index === "" ? "POST" : "PUT", "/api/customer/", form, {})
             isSuccess && rePage() & resetForm()
             isSuccess & index !== "" && editBtn()
-            alert(!msg && "บันทึกสำเร็จ")
+            alert(isSuccess ? "บันทึกสำเร็จ" : msg)
+            location.reload(true)
         } else {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน")
         }
@@ -120,8 +121,8 @@ export default function FormCustomer
     }
 
     return (
-        <form className={`form-customer-${index} *** *:bg-gray-900 *:p-2 *:rounded-lg rounded-lg bg-gray-900 p-4 border border-gray-800`}>
-            <fieldset className=" grid grid-cols-3 *:not-first:bg-gray-900  *:p-2 *:rounded-lg gap-2">
+        <form className={`form-customer-${index} *** *:bg-gray-900 *:md:p-2 *:rounded-lg rounded-lg bg-gray-900 p-4 border border-gray-800`}>
+            <fieldset className={` grid grid-cols-3 gap-2 *:not-first:bg-gray-900  *:p-2 *:rounded-lg md:gap-2 ${isCard ? "" : ""} *:md:col-span-1`}>
                 {/* <legend>ข้อมูลลูกค้า </legend> */}
 
                 <input className={`form-customer__id-${index}`} type="hidden" name="id" defaultValue={id} />
@@ -131,25 +132,31 @@ export default function FormCustomer
                 <details className=" col-span-3 " open={!IsCard}>
                     <summary>เอกสาร</summary>
 
-                    <details className="pl-4 relative col-span-3 " open={!IsCard}>
+                    <details className="col-span-3" open={!IsCard}>
                         <summary>บัตรประชาชน</summary>
-                        <label className={`form-customer__lable-id-card-${index} *** cursor-pointer absolute w-[400px] aspect-16/9 flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerIdCard-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
-                        <input className={`form-customer__input-id-card-${index}`} type="file" name="customerIdCard" id={`customerIdCard-${index}`} hidden onChange={changeIdCard} />
-                        <img className={`form-customer__img-id-card-${index} *** w-[400px] aspect-16/9 bg-gray-800 rounded-lg object-cover `} src={IdCard} alt="" />
+                        <div className="relative aspect-video h-full w-full *:aspect-video">
+                            <label className={`form-customer__lable-id-card-${index} *** cursor-pointer absolute w-full h-full flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerIdCard-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
+                            <img className={`form-customer__img-id-card-${index} *** w-full bg-gray-800 rounded-lg object-cover `} src={IdCard} alt="" />
+                            <input className={`form-customer__input-id-card-${index}`} type="file" name="customerIdCard" id={`customerIdCard-${index}`} hidden onChange={changeIdCard} />
+                        </div>
                     </details>
 
-                    <details className="pl-4 relative col-span-3" open={!IsCard}  >
+                    <details className="col-span-3" open={!IsCard}  >
                         <summary>ใบขับขี่</summary>
-                        <label className={`form-customer__lable-driver-license-${index} *** cursor-pointer absolute w-[400px] aspect-16/9 flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerDriverLicense-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
-                        <input className={`form-customer__input-driver-license-${index}`} type="file" name="customerDriverLicense" id={`customerDriverLicense-${index}`} hidden onChange={changeDriverLicense} />
-                        <img className={`form-customer__img-dirver-license-${index} *** w-[400px] aspect-16/9 bg-gray-800 rounded-lg object-cover `} src={driverLicense} alt="" />
+                        <div className="relative aspect-video h-full w-full *:aspect-video">
+                            <label className={`form-customer__lable-driver-license-${index} *** cursor-pointer absolute w-full h-full flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerDriverLicense-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
+                            <img className={`form-customer__img-dirver-license-${index} *** w-full bg-gray-800 rounded-lg object-cover`} src={driverLicense} alt="" />
+                            <input className={`form-customer__input-driver-license-${index}`} type="file" name="customerDriverLicense" id={`customerDriverLicense-${index}`} hidden onChange={changeDriverLicense} />
+                        </div>
                     </details>
 
-                    <details className="pl-4 relative col-span-3" open={!IsCard}>
+                    <details className="col-span-3" open={!IsCard}>
                         <summary>facebook</summary>
-                        <label className={`form-customer__lable-facebook-${index} *** cursor-pointer absolute w-[400px] aspect-16/9 flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerFacebook-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
-                        <input className={`form-customer__input-facebookk-${index}`} type="file" name="customerFacebook" id={`customerFacebook-${index}`} hidden onChange={changeFacebook} />
-                        <img className={`form-customer__img-facebook-${index} *** w-[400px] aspect-16/9 bg-gray-800 rounded-lg object-cover `} src={facebook} alt="" />
+                        <div className="relative aspect-video h-full w-full *:aspect-video">
+                            <label className={`form-customer__lable-facebook-${index} *** cursor-pointer absolute w-full h-full flex justify-center items-center bg-gray-800/70 rounded-lg `} htmlFor={`customerFacebook-${index}`} hidden={IsCard}>เลือกรูปใบขับขี่</label>
+                            <img className={`form-customer__img-facebook-${index} *** w-full bg-gray-800 rounded-lg object-cover`} src={facebook} alt="" />
+                            <input className={`form-customer__input-facebookk-${index}`} type="file" name="customerFacebook" id={`customerFacebook-${index}`} hidden onChange={changeFacebook} />
+                        </div>
                     </details>
                 </details>
 

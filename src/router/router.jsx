@@ -1,5 +1,5 @@
 import { createHashRouter } from "react-router";
-import { Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, ResultCar, Review } from "../components/frontEnd";
+import { Calendar, Contact, DescriptionCar, Filter, Footer, GalleryCar, JourneyBooking, NavigationBar, Promotion, QAndAComponent, ResultCar, Review } from "../components/frontEnd";
 import { HomePage } from "../pages/frontEnd";
 import { Admin, FormBooking, FormCar, FormContent, FormCustomer } from "../components/admin";
 import { fetchApi } from "../utility";
@@ -27,27 +27,33 @@ const router = createHashRouter([
         element: <Admin />,
         children: [
             {
-                path: "booking",
+                path: "",
+                element: <HistoryBookingPage />,
+                loader: adminLoader
+
+            },
+            {
+                path: "จองรถ",
                 element: <FormBooking />,
                 loader: adminLoader,
             },
             {
-                path: "history/booking",
+                path: "ประวัติการจอง",
                 element: <HistoryBookingPage />,
                 loader: adminLoader,
             },
             {
-                path: "car",
+                path: "รถ",
                 element: <CarPage />,
                 loader: adminLoader,
             },
             {
-                path: "customer",
+                path: "ลูกค้า",
                 element: <CustomerPage />,
                 loader: adminLoader,
             },
             {
-                path: "ui",
+                path: "หน้าเว็บ",
                 element: <FormContent />,
                 loader: adminLoader,
             }
@@ -87,6 +93,7 @@ const router = createHashRouter([
                 <Contact />
                 <JourneyBooking />
                 <Review />
+                <QAndAComponent />
                 <Footer />
             </div>,
 

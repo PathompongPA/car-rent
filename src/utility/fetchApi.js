@@ -1,7 +1,5 @@
 export default async function fetchApi(method, path, body, headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', }) {
-    headers['key'] = "asdf"
-
-    JSON.parse
+    // alert(location.hostname)
     return (
         await fetch(
             `http://${location.hostname}:9999${path}`,

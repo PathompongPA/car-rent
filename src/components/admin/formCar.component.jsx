@@ -125,7 +125,8 @@ export default function FormCar({
         if (isFormCarValid & isTairPriceValid) {
             const { isSuccess, msg } = await fetchApi((index !== "") ? "PUT" : "POST", "/api/car/", formCar, {})
             isSuccess ? alert("บันทึกสำเร็จ") : alert(msg)
-            isSuccess && recallPage() & resetForm()
+            isSuccess && location.reload(true)
+            // recallPage() & resetForm()
             isSuccess & index !== "" && toggleEdit()
         }
     }
@@ -166,7 +167,7 @@ export default function FormCar({
 
     return (
 
-        <form className={`form-car-${index} *** w-[350px] h-fit border border-gray-800 *:bg-gray-900 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
+        <form className={`form-car-${index} *** snap-center min-w-[300px] h-fit border border-gray-800 *:bg-gray-900 flex flex-col gap-2 p-4 rounded-lg *:p-2 *:rounded-lg `} onSubmit={(event) => { event.preventDefault() }}  >
 
             <fieldset className="  grid grid-cols-2 *:not-first:bg-gray-900  gap-4 p-4 *:p-2 *:rounded-lg *:w-full overflow-x-hidden ">
 

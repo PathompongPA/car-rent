@@ -27,7 +27,7 @@ export default function FormContent() {
     return (
         <form className="form-content *** flex flex-col gap-4 pb-20 w-full">
 
-            <button className=" z-50 bg-gray-800 fixed top-[25px] right-[100px] border border-gray-800 p-4 rounded-lg hover:bg-gray-800 cursor-pointer active:bg-gray-900" type="button" onClick={save}>บันทึก</button>
+            <button className=" z-40 bg-gray-800 fixed md:bottom-4 md:right-[100px]  bottom-4 right-4 border border-gray-800 p-4 rounded-lg hover:bg-gray-800 cursor-pointer active:bg-gray-900" type="button" onClick={save}>บันทึก</button>
 
             <div className=" text-title-3 font-bold bg-gray-900 ">
                 <h1 className=" p-4 rounded-lg ">แก้ไขหน้าเว็บ</h1>
@@ -38,12 +38,12 @@ export default function FormContent() {
                 <div className=" bg-white absolute whitespace-pre-wrap  overflow-auto h-full"> {JSON.stringify(Content, null, 2)} </div>
             </div>
 
-            <div className=" flex flex-col gap-4 border  border-gray-800  rounded-lg *:rounded-lg p-4">
+            <div className=" flex flex-col gap-1 md:border  border-gray-800  rounded-lg *:rounded-lg p-4">
                 <h1 className="font-black text-description-1">แถบเมนูนำทาง</h1>
-                <div className=" flex gap-4 border border-gray-800 rounded-lg p-4 ">
-                    <label htmlFor="">logo </label>
-                    <div className=" relative ">
-                        <label className=" absolute cursor-pointer hover:bg-gray-900/90 w-full h-full border top-0 flex items-center justify-center bg-gray-800/50 " htmlFor="logo">คลิกเพื่อเปลี่ยนโลโก้</label>
+                <div className=" flex flex-col md:flex-row gap-4 md:border border-gray-800 rounded-lg p-4 ">
+                    <label className="hidden md:block" htmlFor="">logo </label>
+                    <div className=" relative flex items-center  justify-center ">
+                        <label className=" absolute cursor-pointer w-[200px] hover:bg-gray-900/90 h-full border top-0 flex items-center justify-center bg-gray-800/50 " htmlFor="logo">คลิกเพื่อเปลี่ยนโลโก้</label>
                         <input type="file" name="logo" id="logo" hidden onChange={(e) => { document.getElementsByClassName("content-image-logo")[0].src = URL.createObjectURL(e.target.files[0]) }} />
                         <img className="content-image-logo w-[200px] aspect-16/9 object-cover bg-gray-800" src={Content[5]?.value.image} alt={Content[5]?.value.image} />
                     </div>
@@ -51,7 +51,7 @@ export default function FormContent() {
                 </div>
                 {Content[6]?.value.map(({ text }, indexTitleNavbar) => {
                     return (
-                        <div className=" flex gap-2 border border-gray-800 p-2" key={text + indexTitleNavbar}>
+                        <div className=" flex flex-col md:flex-row gap-2 md:border border-gray-800 md:p-2" key={text + indexTitleNavbar}>
                             <label htmlFor="">{`เมนูนำทางที่ ${indexTitleNavbar + 1}`}</label>
                             <input type="text" name="" defaultValue={text} placeholder={`เมนูนำทางที่ ${indexTitleNavbar}`} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[6].value[indexTitleNavbar].text = e.target.value; return newState; }) }} />
                         </div>
@@ -59,18 +59,18 @@ export default function FormContent() {
                 })}
             </div>
 
-            <div className=" flex flex-col border border-gray-800 rounded-lg p-4 gap-4">
+            <div className=" flex flex-col md:border border-gray-800 rounded-lg p-4 gap-4 ">
                 <h1 className="font-bold text-description-1">view board</h1>
 
-                <div className="flex gap-8 *:flex-1/2 h-[400px]">
-                    <div className=" flex flex-col border  rounded-lg border-gray-800  relative p-4 pt-16 gap-4 ">
+                <div className="flex flex-col md:flex-row gap-8 *:flex-1/2 h-[100vh] md:h-[400px] ">
+                    <div className=" flex flex-col md:border  rounded-lg border-gray-800  relative p-4 pt-16 gap-4 ">
                         <div className="">
                             <h1 className=" absolute top-4 left-4 text-description-3 ">เพิ่ม</h1>
-                            <div className=" absolute top-4 right-4 text-sm text-gray-500 ">* รูปควรมีขนาดมากกว่า 1280*720 และมีอัตราส่วน 16:9 </div>
+                            <div className=" absolute w-[200px] top-4 right-4 text-sm text-gray-500 ">* รูปควรมีขนาดมากกว่า 1280*720 และมีอัตราส่วน 16:9 </div>
                         </div>
                         <label className=" flex-1/5 border cursor-pointer border-gray-800 rounded-lg h-full flex justify-center items-center " htmlFor="view-board-image" >คลิกเพื่อเพิ่มรูป</label>
                         <input type="file" name="viewBoard" id="view-board-image" hidden onChange={(e) => { setImage(e.target.files) }} multiple />
-                        <div className="flex flex-col border border-gray-800 h-full  overflow-auto p-4 gap-4 ">
+                        <div className="flex md:flex-col border border-gray-800 h-full  overflow-auto p-4 gap-4 ">
                             {Array.from(image).map((item, indexImageViewBoard) => {
                                 return (<img className="object-cover  aspect-16/9" src={URL.createObjectURL(item)} key={item + indexImageViewBoard} />)
                             })}
@@ -98,29 +98,29 @@ export default function FormContent() {
 
             </div>
 
-            <div className="flex flex-col gap-4 border p-4 rounded-lg border-gray-800">
+            <div className="flex flex-col gap-4 md:border p-4 rounded-lg border-gray-800">
                 <h1 className="text-description-1 font-bold">ขั้นตอนการจอง</h1>
-                <div className="border p-4 flex gap-2 border-gray-800 rounded-lg">
+                <div className="md:border md:p-4 flex flex-col md:flex-row gap-2 border-gray-800 rounded-lg">
                     <label className="" htmlFor="">หัวข้อ</label>
                     <input className="" type="text" name="" defaultValue={Content[4]?.value.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[4].value.text = e.target.value; return newState }) }} />
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col md:gap-4 gap-4">
                     {Content[3]?.value.map(({ title, detail }, indexCard) => {
                         return (
-                            <div className="flex flex-col gap-4 p-4 justify-start border border-gray-800 rounded-lg" key={title + indexCard}>
+                            <div className="flex flex-col md:gap-4 md:p-4 justify-start md:border border-gray-800 rounded-lg" key={title + indexCard}>
                                 <div className=" flex justify-between items-center">
-                                    <div className="flex gap-2 items-center">
+                                    <div className="flex md:flex-row gap-2 md:items-center">
                                         <label className="" htmlFor="">หัวข้อขั้นตอนที่ {indexCard + 1}</label>
-                                        <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].title = e.target.value; return newState }) }} />
+                                        <input className="w-[150px]" type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].title = e.target.value; return newState }) }} />
                                     </div>
                                 </div>
                                 <div className=" flex flex-col gap-4">
                                     {detail?.map((item, indexDetail) => {
                                         return (
-                                            <div className=" flex gap-4" key={item + indexDetail}>
+                                            <div className=" flex md:gap-4  gap-2 md:flex-row" key={item + indexDetail}>
                                                 <label htmlFor="">รายละเอียด {indexDetail + 1}</label>
-                                                <input type="text" name="" defaultValue={item} key={item + indexDetail} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].detail[indexDetail] = e.target.value; return newState; }) }} />
-                                                <button className="p-2 bg-red-800 cursor-pointer hover:text-golden-1 rounded-lg" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[3]?.value[indexCard].detail.splice(indexDetail, 1); return newState }) }}>ลบ</button>
+                                                <input className="w-[150px]" type="text" name="" defaultValue={item} key={item + indexDetail} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].detail[indexDetail] = e.target.value; return newState; }) }} />
+                                                <button className=" px-2 md:p-2 bg-red-800 cursor-pointer hover:text-golden-1 rounded-lg" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[3]?.value[indexCard].detail.splice(indexDetail, 1); return newState }) }}>ลบ</button>
                                             </div>)
                                     })}
                                     <button className=" cursor-pointer hover:text-golden-1  bg-gray-800 p-2 rounded-lg" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[3].value[indexCard].detail.length < 7 ? newState[3].value[indexCard].detail.push("") : alert("ไม่สามารถเพิ่มรายละเอียดได้อีก"); return newState; }) }}>เพิ่มรายละเอียด</button>
@@ -138,9 +138,9 @@ export default function FormContent() {
                     <input className="" type="text" name="" defaultValue={Content[1]?.value[0]?.text} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[1].value[0].text = e.target.value; return newState }) }} />
                 </div>
                 {Content[0]?.value?.map(({ list, title }, indexCard) =>
-                    <div className=" flex flex-col gap-4 p-4 justify-start " key={title + indexCard}>
+                    <div className=" flex flex-col md:gap-4 md:p-4 justify-start " key={title + indexCard}>
                         <div className=" flex justify-between">
-                            <div className="flex gap-2 items-center ">
+                            <div className="flex  gap-2 items-center ">
                                 <label htmlFor="">ช่องทางที่ {indexCard + 1}</label>
                                 <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].title = e.target.value; return newState }) }} />
                             </div>
@@ -148,9 +148,11 @@ export default function FormContent() {
                         </div>
                         <div className="flex flex-col gap-2">
                             {list?.map(({ title, link }, indexSubCard) =>
-                                <div className=" flex gap-2 items-center *:not-[label,button]:flex-1/2" key={title + indexSubCard}>
-                                    <label htmlFor="">ชื่อ</label>
-                                    <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].title = e.target.value; return newState }) }} />
+                                <div className=" flex flex-col md:flex-row gap-2 md:items-center *:not-[label,button]:flex-1/2" key={title + indexSubCard}>
+                                    <div className="">
+                                        <label htmlFor="">ชื่อ</label>
+                                        <input type="text" name="" defaultValue={title} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].title = e.target.value; return newState }) }} />
+                                    </div>
                                     <label htmlFor="">link</label>
                                     <input type="text" name="" defaultValue={link} onBlur={(e) => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list[indexSubCard].link = e.target.value; return newState }) }} />
                                     <button className="rounded-lg  bg-red-800 cursor-pointer hover:text-golden-1   p-2" type="button" onClick={() => { setContent(state => { let newState = [...state]; newState[0].value[indexCard].list?.splice(indexSubCard, 1); return newState }) }}>ลบ</button>

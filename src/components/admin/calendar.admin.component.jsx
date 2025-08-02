@@ -75,19 +75,19 @@ export default function CalendarAdmin({ bookings = [] }) {
 
     return (
 
-        <div className="max-w-xl mx-auto  p-4 rounded-xl shadow border border-gray-800">
-            <div className="flex justify-between items-center p-2 py-3  rounded-lg ">
+        <div className="max-w-xl mx-auto  md:p-4 rounded-xl shadow md:border md:border-gray-800">
+            <div className="flex justify-between items-center p-2 md:py-3  rounded-lg ">
                 <button onClick={handlePrev} type="button" className=" cursor-pointer px-4 py-2 rounded-lg  text-white">{`<`}</button>
-                <h2 className="text-2xl text-white">{currentMonth.format("MMMM YYYY")}</h2>
+                <h2 className="text-xl md:text-2xl text-white">{currentMonth.format("MMMM YYYY")}</h2>
                 <button onClick={handleNext} type="button" className=" cursor-pointer px-4 py-2 rounded-lg  text-white">{`>`}</button>
             </div>
 
-            <div className="flex gap-4 mt-2">
+            <div className="flex gap-1 md:gap-4 md:mt-2 *:h-10">
                 <button onClick={handleToday} type="button" className=" hover:text-golden-1 cursor-pointer flex-1 py-1 border border-gray-800 text-white rounded">วันนี้</button>
-                <button onClick={() => setSelectedRange({ checkIn: null, checkOut: null })} type="button" className="hover:text-golden-1 cursor-pointer flex-1 py-3 border border-gray-800 text-white rounded">ล้างวันจอง</button>
+                <button onClick={() => setSelectedRange({ checkIn: null, checkOut: null })} type="button" className="hover:text-golden-1 cursor-pointer flex-1 md:py-3 border border-gray-800 text-white rounded">ล้างวันจอง</button>
             </div>
 
-            <div className="grid grid-cols-7 gap-1 mt-4 text-center text-sm font-semibold text-gray-300 border-gray-800 rounded-lg  px-8">
+            <div className="grid grid-cols-7 gap-1 md:mt-4 text-center text-sm font-semibold text-gray-300 border-gray-800 rounded-lg  py-2 md:px-8 ">
                 {["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"].map((d) => (
                     <div key={d} className="py-2 border border-gray-800 rounded">{d}</div>
                 ))}
@@ -100,7 +100,7 @@ export default function CalendarAdmin({ bookings = [] }) {
                                 : day.isCheckIn ? "bg-lime-600 text-white font-bold"
                                     : day.isCheckOut ? "bg-lime-600 text-white"
                                         : day.isInRange ? "bg-lime-700 text-white"
-                                            : day.isToday ? "border border-gray-600 text-white"
+                                            : day.isToday ? "border border-gray-600 bg-gray-500 text-white"
                                                 : "bg-gray-900 hover:bg-gray-600 text-gray-100"} `}
                         >
                             {day.date.date()}
@@ -111,14 +111,14 @@ export default function CalendarAdmin({ bookings = [] }) {
                 )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-4  *:border *:border-gray-800 *:rounded-lg *:p-4 *:text-center ">
+            <div className="grid grid-cols-2 gap-1 p-2 md:gap-4 md:mt-4  *:border *:border-gray-800 *:rounded-lg *:md:p-4 *:text-center">
                 <div className="">
                     <div className="text-gray-400 text-xs">วันรับรถ</div>
-                    <input className="calendar-admin__input-check-in *** text-center" type="text" name="checkInDate" value={selectedRange.checkIn ?? ""} readOnly />
+                    <input className="calendar-admin__input-check-in *** border-none text-center p-1 w-[120px] md:w-full " type="text" name="checkInDate" value={selectedRange.checkIn ?? ""} readOnly />
                 </div>
                 <div className="">
                     <div className="text-gray-400 text-xs">วันคืนรถ</div>
-                    <input className="calendar-admin__input-check-out *** text-center" type="text" name="checkOutDate" value={selectedRange.checkOut ?? ""} readOnly />
+                    <input className="calendar-admin__input-check-out *** border-none text-center p-1 w-[120px] md:w-full " type="text" name="checkOutDate" value={selectedRange.checkOut ?? ""} readOnly />
                 </div>
             </div>
 

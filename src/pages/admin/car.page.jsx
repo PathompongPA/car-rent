@@ -7,8 +7,8 @@ export default function CarPage() {
     const [brand, setbrand] = useState("all")
     Car = brand === "all" ? Car.data : Car.data.filter((element) => element.brandId === brand)
     return (
-        <div className="flex flex-col  *:flex *:p-4 *:gap-4  pb-64 ">
-            <h1 className="text-title-3 font-bold ">แก้ไขข้อมูลรถ</h1>
+        <div className="flex flex-col w-full  *:not-first:md:flex *:p-4 *:gap-4  md:pb-64  pt-18 ">
+            <h1 className=" hidden md:flex text-title-3 font-bold ">แก้ไขข้อมูลรถ</h1>
 
             <div className=" *:p-4  *:border rounded-lg border-gray-800 *:border-gray-800 ">
                 <div className="flex-2/5 flex flex-col gap-4 rounded-lg h-fit">
@@ -23,20 +23,20 @@ export default function CarPage() {
                         <button className="" type="button" onClick={() => { document.getElementsByClassName("contaner-card-brand")[0].scrollLeft += 200 }}>{`>`}</button>
                     </div> */}
                     <h1 className="text-description-1 font-bold ">ยี่ห้อทั้งหมด</h1>
-                    <div className="contaner-card-brand flex gap-4 overflow-x-auto  p-2 flex-wrap ">
+                    <div className="contaner-card-brand flex  gap-4 overflow-x-auto  p-2 md:flex-wrap ">
                         {Brand?.data.map((item, indexBrand) => <FormBrandCar data={item} isCard={true} index={item.id + indexBrand} key={item.id} />)}
                     </div>
                 </div>
             </div>
 
-            <div className="flex w-full *:border *:border-gray-800 *:p-4 *:gap-4  *:rounded-lg ">
+            <div className="flex flex-col md:flex-row w-full *:border *:border-gray-800 *:p-4 *:gap-4  *:rounded-lg ">
                 <div className=" flex-2/5 flex justify-start flex-col p-4  ">
                     <h1 className="text-description-1  font-bold">เพิ่มรถ</h1>
                     <div className=" flex  p-4 justify-center ">
                         <FormCar />
                     </div>
                 </div>
-                <div className=" flex-4/5 w-full flex flex-col flex-wrap  overflow-y-auto border ">
+                <div className=" flex-4/5 w-full flex flex-col md:flex-wrap  md:overflow-y-auto border ">
                     <div className="flex justify-between">
                         <h1 className="text-description-1 font-bold">รถทั้งหมด</h1>
                         <select className="p-1" name="" id="" defaultValue={"all"} onChange={(e) => { setbrand(e.target.value) }}>
@@ -44,7 +44,7 @@ export default function CarPage() {
                             {Brand?.data.map(({ id, brandName }, indexBrand) => (<option className="text-gray-800" value={id} key={id + indexBrand}>{brandName}</option>))}
                         </select>
                     </div>
-                    <div className="flex flex-wrap p-4 gap-4">
+                    <div className="flex w-full md:flex-wrap p-4 gap-4 overflow-auto snap-mandatory ">
                         {Car?.map((item) => < FormCar isCard={true} index={item.id} data={item} key={item.id} />)}
                     </div>
                 </div>
